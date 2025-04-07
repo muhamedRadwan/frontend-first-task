@@ -30,7 +30,8 @@ The last Date for this task is 10/04/2025
 - Push your solution to your fork.
 - Open a Pull Request to this original repository.
 - Include your email in the title of the Pull Request.
-**Example title**: Frontend Task Submission - john.doe@example.com
+
+  **Example title**: Frontend Task Submission - john.doe@example.com
 
 ## 💡 Bonus Points
 
