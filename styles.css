@@ -6,7 +6,7 @@
 }
 
 * {
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 body {
   font-family: "Fredoka", sans-serif;
@@ -1624,17 +1624,41 @@ footer {
   line-height: 1.6;
   margin-bottom: 2rem;
   color: #fff;
-  max-width: 400px;
+  max-width: 263px;
 }
 
 .app-buttons {
   display: flex;
-  gap: 1rem;
+  gap: 15px;
+  margin-top: 20px;
 }
 
-.app-buttons a img {
-  height: 40px;
+.app-button {
+  display: inline-block;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.app-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.store-badge {
+  width: 160px;
+  height: auto;
   border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .app-buttons {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .store-badge {
+    width: 140px;
+  }
 }
 
 .footer-links {
