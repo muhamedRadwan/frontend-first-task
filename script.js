@@ -73,3 +73,72 @@ const observer = new IntersectionObserver(
 featureCards.forEach((card) => {
   observer.observe(card);
 });
+
+// Animation on scroll for sections other than hero
+const animateOnScroll = () => {
+  const elements = document.querySelectorAll(
+    ".features-container h1, .feature-card, .message-heading, .message-preview, .stories-content, .story-card, .growth-text, .growth-image, .card, .community-header, .testimonial-card, .growing-text, .growing-image, .footer-content"
+  );
+
+  elements.forEach((element) => {
+    const elementTop = element.getBoundingClientRect().top;
+    const elementBottom = element.getBoundingClientRect().bottom;
+
+    if (elementTop < window.innerHeight && elementBottom > 0) {
+      element.style.opacity = "1";
+      element.style.transform = "translateY(0)";
+    }
+  });
+};
+
+// Add initial styles for animation (excluding hero section)
+document.addEventListener("DOMContentLoaded", () => {
+  const animatedElements = document.querySelectorAll(
+    ".features-container h1, .feature-card, .message-heading, .message-preview, .stories-content, .story-card, .growth-text, .growth-image, .card, .community-header, .testimonial-card, .growing-text, .growing-image, .footer-content"
+  );
+
+  animatedElements.forEach((element) => {
+    element.style.opacity = "0";
+    element.style.transform = "translateY(20px)";
+    element.style.transition = "opacity 1s ease-out, transform 1s ease-out";
+  });
+});
+
+// Add scroll event listener
+window.addEventListener("scroll", animateOnScroll);
+
+// Trigger initial check
+animateOnScroll();
+
+// Header scroll effect
+const heroSection = document.querySelector("#hero");
+
+window.addEventListener("scroll", () => {
+  const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+
+  if (window.scrollY > heroBottom - 100) {
+    header.classList.add("scrolled");
+  } else {
+    header.classList.remove("scrolled");
+  }
+});
+
+// Initialize Swiper
+const testimonialSwiper = new Swiper(".testimonialSwiper", {
+  slidesPerView: 1,
+  spaceBetween: 30,
+  loop: true,
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  breakpoints: {
+    768: {
+      slidesPerView: 1,
+    },
+  },
+});
