@@ -1745,3 +1745,231 @@ footer {
     font-size: 2.5rem;
   }
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  /* Header Responsive */
+  .nav-links {
+    display: none;
+  }
+
+  .logo h1 {
+    font-size: 1.2rem;
+  }
+
+  /* Hero Section Responsive */
+  #hero {
+    padding: 6rem 5% 3rem;
+  }
+
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-content p {
+    font-size: 1.2rem;
+  }
+
+  .hero-content .subtitle {
+    font-size: 1.4rem;
+  }
+
+  .signup-section {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  /* Features Section Responsive */
+  #features {
+    padding: 4rem 5%;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  #features h1 {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  /* Messaging Section Responsive */
+  .messaging-content {
+    flex-direction: column;
+  }
+
+  .message-heading h2 {
+    font-size: 2.5rem;
+  }
+
+  .message-preview {
+    width: 100%;
+  }
+
+  .chat-bubble p {
+    max-width: 85%;
+  }
+
+  /* Stories Section Responsive */
+  .stories-container {
+    flex-direction: column;
+  }
+
+  .stories-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .stories-preview {
+    width: 100%;
+    margin-top: 3rem;
+  }
+
+  .story-card {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .story-card.top,
+  .story-card.bottom {
+    position: static;
+    transform: none !important;
+  }
+
+  .teacher-card {
+    position: static;
+    transform: none;
+    margin-top: 1rem;
+  }
+
+  /* Growth Section Responsive */
+  .growth-content {
+    flex-direction: column;
+  }
+
+  .growth-text h1 {
+    font-size: 2.5rem;
+  }
+
+  .growth-image {
+    width: 100%;
+    margin-top: 3rem;
+  }
+
+  .card {
+    position: relative;
+    margin: 1rem 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+
+  /* Community Section Responsive */
+  .community-header h1 {
+    font-size: 2.5rem;
+  }
+
+  .testimonial-text {
+    font-size: 1.2rem;
+  }
+
+  .slider-controls {
+    width: 100%;
+    left: 0;
+  }
+
+  .testimonial-card {
+    padding: 1.5rem;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none !important;
+  }
+
+  /* Footer Responsive */
+  .footer-content {
+    flex-direction: column;
+  }
+
+  .footer-links {
+    flex-wrap: wrap;
+  }
+
+  .footer-section {
+    flex: 1 1 40%;
+    margin-bottom: 2rem;
+  }
+
+  .app-buttons {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 576px) {
+  /* Additional Mobile Styles */
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  .feature-card {
+    padding: 1.5rem;
+  }
+
+  .message-heading h2 {
+    font-size: 2rem;
+  }
+
+  .stories-content h1 {
+    font-size: 2rem;
+  }
+
+  .growth-text h1 {
+    font-size: 2rem;
+  }
+
+  .community-header h1 {
+    font-size: 2rem;
+  }
+
+  .footer-links {
+    flex-direction: column;
+  }
+
+  .footer-section {
+    flex: 1 1 100%;
+  }
+}
+
+/* Tablet Responsive */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero-content h1 {
+    font-size: 3.5rem;
+  }
+
+  .message-heading h2 {
+    font-size: 3rem;
+  }
+
+  .stories-content h1 {
+    font-size: 3rem;
+  }
+
+  .growth-text h1 {
+    font-size: 3rem;
+  }
+
+  .community-header h1 {
+    font-size: 3rem;
+  }
+}
