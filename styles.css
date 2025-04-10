@@ -6,7 +6,7 @@
 }
 
 * {
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 body {
   font-family: "Fredoka", sans-serif;
@@ -484,47 +484,82 @@ nav {
 
 /* Growing Section */
 #growing {
-  background: "#46a7fe";
-  padding: 6rem 5%;
-  min-height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
   position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: start;
+  justify-content: start;
   overflow: hidden;
+  width: 100%;
+  padding: 31px 0 0 0;
+}
+
+#growing::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(124, 195, 255, 0.95) 0%,
+    rgba(74, 169, 255, 0.95) 100%
+  );
+  z-index: 1;
+}
+
+#growing::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("assets/images/students-removebg-preview.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 2;
 }
 
 .growing-container {
+  position: relative;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  width: 100%;
+  padding: 0 20px;
+  z-index: 3;
 }
 
 .growing-content {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 4rem;
+  text-align: center;
+  position: relative;
 }
 
-.growing-text {
-  flex: 1;
+.text-content {
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
 }
 
-.growing-text h1 {
+.text-content h1 {
   font-size: 3.5rem;
   font-weight: bold;
+  color: #fff;
   margin-bottom: 1.5rem;
-  line-height: 1.2;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.growing-text p {
+.text-content p {
   font-size: 1.2rem;
+  color: #fff;
   margin-bottom: 2rem;
   opacity: 0.9;
-  line-height: 1.6;
-  max-width: 500px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .try-now-btn {
@@ -537,90 +572,93 @@ nav {
   font-weight: bold;
   cursor: pointer;
   transition: transform 0.3s;
+  position: relative;
 }
 
 .try-now-btn:hover {
   transform: scale(1.05);
 }
 
-.growing-image {
-  flex: 1;
-  position: relative;
-}
-
-.growing-image img {
-  width: 100%;
-  max-width: 600px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-.floating-icons {
+.icon-decorations {
   position: absolute;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
+  z-index: 3;
 }
 
-.floating-icons img {
+.icon-decorations img {
   position: absolute;
   width: 40px;
   height: 40px;
-  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
+  filter: brightness(0) invert(1);
+  opacity: 0.8;
 }
 
-.book-icon {
+.icon-bag {
   top: 10%;
-  left: -20px;
+  left: 10%;
   animation: float 6s ease-in-out infinite;
 }
 
-.ruler-icon {
+.icon-scissors {
   top: 20%;
-  right: -20px;
+  right: 15%;
   animation: float 6s ease-in-out infinite 1s;
 }
 
-.bag-icon {
-  bottom: 20%;
-  left: -30px;
+.icon-book {
+  top: 40%;
+  left: 5%;
   animation: float 6s ease-in-out infinite 2s;
 }
 
-.palette-icon {
-  bottom: 10%;
-  right: -20px;
+.icon-calculator {
+  bottom: 30%;
+  left: 20%;
   animation: float 6s ease-in-out infinite 3s;
+}
+
+.icon-palette {
+  bottom: 20%;
+  right: 10%;
+  animation: float 6s ease-in-out infinite 4s;
+}
+
+.icon-ruler {
+  top: 30%;
+  right: 5%;
+  animation: float 6s ease-in-out infinite 5s;
 }
 
 @keyframes float {
   0% {
-    transform: translateY(0px);
+    transform: translateY(0) rotate(0deg);
   }
   50% {
-    transform: translateY(-20px);
+    transform: translateY(-20px) rotate(5deg);
   }
   100% {
-    transform: translateY(0px);
+    transform: translateY(0) rotate(0deg);
   }
 }
 
-@media (max-width: 968px) {
-  .growing-content {
-    flex-direction: column;
-    text-align: center;
+@media (max-width: 768px) {
+  #growing {
+    margin: 0 10px;
+    padding: 60px 0;
   }
 
-  .growing-text h1 {
+  .text-content h1 {
     font-size: 2.5rem;
   }
 
-  .growing-image {
-    margin-top: 2rem;
+  .text-content p {
+    font-size: 1rem;
   }
 
-  .floating-icons img {
+  .icon-decorations img {
     width: 30px;
     height: 30px;
   }
@@ -1395,7 +1433,9 @@ nav {
   align-items: center;
   gap: 1rem;
   margin-bottom: 1.5rem;
-  
+  background-color: #101f2b;
+  padding: 0.3rem 2.2rem;
+  border-radius: 53px;
 }
 
 .user-avatar {
@@ -1418,6 +1458,7 @@ nav {
 .testimonial-text {
   font-size: 1.5rem;
   line-height: 1.6;
+  text-align: center;
 }
 
 .slider-controls {
