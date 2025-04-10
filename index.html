@@ -15,13 +15,18 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
   </head>
   <body>
     <!-- Header Section -->
     <header>
       <nav>
         <div class="logo">
-          <img src="assets/logo.png" alt="Class Community" />
+          <img src="assets/images/logo.png" alt="Class Community" />
+          <h1>Class <br />Community</h1>
         </div>
         <ul class="nav-links">
           <li><a href="#home">Home</a></li>
@@ -51,9 +56,6 @@
           <button class="continue-button">Continue</button>
         </div>
       </div>
-      <div class="hero-decorations">
-        <!-- These will be styled with CSS for the floating pencils and notebook decorations -->
-      </div>
     </section>
 
     <!-- Features Section -->
@@ -66,7 +68,7 @@
         <div class="features-grid">
           <div class="feature-card">
             <div class="icon-container">
-              <img src="assets/idea-icon.svg" alt="Create Culture" />
+              <img src="assets/images/studying.jpg" alt="Create Culture" />
             </div>
             <h3>Create a Positive<br />Culture</h3>
             <p>
@@ -76,7 +78,7 @@
           </div>
           <div class="feature-card">
             <div class="icon-container">
-              <img src="assets/voice-icon.svg" alt="Give Voice" />
+              <img src="assets/images/studying.jpg" alt="Give Voice" />
             </div>
             <h3>Give Students<br />a Voice</h3>
             <p>
@@ -87,7 +89,7 @@
           </div>
           <div class="feature-card">
             <div class="icon-container">
-              <img src="assets/share-icon.svg" alt="Share Moments" />
+              <img src="assets/images/studying.jpg" alt="Share Moments" />
             </div>
             <h3>Share Moments<br />with Parents</h3>
             <p>
@@ -107,14 +109,18 @@
           <div class="message-preview">
             <div class="chat-bubble received">
               <img
-                src="assets/teacher-avatar.png"
+                src="assets/images/studying.jpg"
                 alt="Teacher"
                 class="avatar"
               />
               <p>Thank you for help Abdullah to do his homework.</p>
             </div>
             <div class="chat-bubble sent">
-              <img src="assets/parent-avatar.png" alt="Parent" class="avatar" />
+              <img
+                src="assets/images/education.jpg"
+                alt="Parent"
+                class="avatar"
+              />
               <p>
                 We had no idea, he was struggling with math - it was really
                 helpfull. Thank you Md. Yusuf
@@ -122,7 +128,7 @@
             </div>
             <div class="chat-bubble received">
               <img
-                src="assets/teacher-avatar.png"
+                src="assets/images/studying.jpg"
                 alt="Teacher"
                 class="avatar"
               />
@@ -132,9 +138,13 @@
               </p>
             </div>
             <div class="chat-image">
-              <img src="assets/parent-avatar.png" alt="Parent" class="avatar" />
               <img
-                src="assets/student-happy.jpg"
+                src="assets/images/studying.jpg"
+                alt="Parent"
+                class="avatar"
+              />
+              <img
+                src="assets/images/education.jpg"
                 alt="Happy student"
                 class="chat-img"
               />
@@ -169,7 +179,7 @@
         <div class="stories-preview">
           <div class="story-card top">
             <img
-              src="assets/student1.jpg"
+              src="assets/images/studying.jpg"
               alt="Student learning"
               class="story-img"
             />
@@ -186,7 +196,7 @@
           </div>
           <div class="story-card bottom">
             <img
-              src="assets/student2.jpg"
+              src="assets/images/studying.jpg"
               alt="Student in lab"
               class="story-img"
             />
@@ -203,7 +213,7 @@
           </div>
           <div class="teacher-card">
             <img
-              src="assets/teacher-avatar.png"
+              src="assets/images/education.jpg"
               alt="Teacher"
               class="teacher-avatar"
             />
@@ -266,38 +276,74 @@
       <div class="community-container">
         <div class="community-header">
           <h1>Our community is<br />our superpower</h1>
-          <img
-            src="assets/cloud-icon.svg"
-            alt="Cloud Icon"
-            class="cloud-icon"
-          />
-          <img src="assets/star-icon.svg" alt="Star Icon" class="star-icon" />
+          <i class="fas fa-cloud cloud-icon"></i>
+          <i class="fas fa-star star-icon"></i>
         </div>
         <div class="testimonial-slider">
-          <div class="testimonial-card">
-            <div class="user-info">
-              <img
-                src="assets/ibne-abbas.jpg"
-                alt="User Avatar"
-                class="user-avatar"
-              />
-              <div class="user-details">
-                <h3>Ibne Abbas</h3>
-                <span>@i.abbas</span>
+          <div class="swiper testimonialSwiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="testimonial-card">
+                  <div class="user-info">
+                    <img
+                      src="assets/images/education.jpg"
+                      alt="User"
+                      class="user-avatar"
+                    />
+                    <div class="user-details">
+                      <h3>Ibne Abbas</h3>
+                      <span>@i.abbas</span>
+                    </div>
+                  </div>
+                  <p class="testimonial-text">
+                    Thank you Calss Community for providing opportunities for
+                    scholars to not only complete lessons, but give us teachers
+                    some love!
+                  </p>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="testimonial-card">
+                  <div class="user-info">
+                    <img
+                      src="assets/images/education.jpg"
+                      alt="User"
+                      class="user-avatar"
+                    />
+                    <div class="user-details">
+                      <h3>Sarah Johnson</h3>
+                      <span>@s.johnson</span>
+                    </div>
+                  </div>
+                  <p class="testimonial-text">
+                    This platform has transformed how I communicate with
+                    parents. It's been a game-changer for our classroom!
+                  </p>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="testimonial-card">
+                  <div class="user-info">
+                    <img
+                      src="assets/images/education.jpg"
+                      alt="User"
+                      class="user-avatar"
+                    />
+                    <div class="user-details">
+                      <h3>Michael Chen</h3>
+                      <span>@m.chen</span>
+                    </div>
+                  </div>
+                  <p class="testimonial-text">
+                    As a parent, I love being able to see my child's progress
+                    and stay connected with their teachers.
+                  </p>
+                </div>
               </div>
             </div>
-            <p class="testimonial-text">
-              Thank you Calss Community for providing opportunities for scholars
-              to not only complete lessons, but give us teachers some love!
-            </p>
-          </div>
-          <div class="slider-controls">
-            <button class="prev-btn">
-              <i class="fas fa-chevron-left"></i>
-            </button>
-            <button class="next-btn">
-              <i class="fas fa-chevron-right"></i>
-            </button>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
           </div>
         </div>
       </div>
@@ -409,6 +455,7 @@
       </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
