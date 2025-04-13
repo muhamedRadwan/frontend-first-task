@@ -214,19 +214,6 @@ header {
   animation: fadeInUp 1s ease-out;
 }
 
-.feature-card {
-  animation: fadeInUp 1s ease-out;
-  transition: transform 0.3s ease;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  padding: 2rem;
-  border-radius: 20px;
-  text-align: center;
-  position: relative;
-  padding-top: 80px;
-  margin-top: 40px;
-}
-
 .feature-card:hover {
   transform: translateY(-10px);
 }
@@ -925,13 +912,13 @@ nav {
 }
 
 .helping-card {
-  bottom: 20%;
-  left: -30px;
+  bottom: 44%;
+  left: -54px;
 }
 
 .positive-card {
-  bottom: -20px;
-  right: 20px;
+  bottom: 14%;
+  left: 102px;
 }
 
 .goal-card .icon {
@@ -1007,22 +994,25 @@ nav {
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   margin: 0 auto;
+  background: rgb(0 72 133);
+  border-radius: 20px;
 }
 
 .feature-card {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
   padding: 2rem;
-  border-radius: 20px;
   text-align: center;
-  transition: transform 0.3s;
   position: relative;
   padding-top: 80px;
-  margin-top: 40px;
+  /* margin-top: 40px; */
+  transform: perspective(1000px) rotateX(15deg) rotateY(-10deg)
+    skew(-5deg, 2deg);
+  transform-style: preserve-3d;
+  transform-origin: top left;
 }
 
 .feature-card:hover {
-  transform: translateY(-10px);
+  transform: perspective(1000px) rotateX(15deg) rotateY(-10deg)
+    skew(-5deg, 2deg);
 }
 
 .icon-container {
@@ -1127,6 +1117,8 @@ nav {
   flex: 1;
   position: relative;
   min-height: 500px;
+  background-color: #336a98;
+  border-radius: 30px 30px 30px 0px;
 }
 
 .story-card {
@@ -1312,9 +1304,9 @@ nav {
 
 .message-preview {
   flex: 1;
-  background-color: #f8f9fa;
+  background-color: #336a98;
   padding: 2rem;
-  border-radius: 20px;
+  border-radius: 30px 30px 0px 30px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
