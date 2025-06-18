@@ -1,0 +1,6 @@
+/* Force Swiper and its wrappers to allow overflow */
+.swiper,
+.swiper-wrapper,
+.swiper-slide {
+  overflow: visible !important;
+}
