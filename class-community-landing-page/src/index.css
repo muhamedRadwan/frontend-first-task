@@ -1,0 +1,40 @@
+@import "tailwindcss";
+@plugin "daisyui";
+.mainColor {
+  color: #3fbdf7;
+}
+
+.bg-mainColor {
+  background-color: #3fbdf7;
+}
+
+.bg-secondColor {
+  background-color: #1e7aa6;
+}
+
+body {
+  font-family: "Rubik", sans-serif;
+  background-color: #3fbdf7;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Roboto Slab", serif;
+}
+.swiper-container {
+  overflow: visible;
+}
+.swiper {
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  overflow: visible !important;
+  list-style: none;
+  padding: 0;
+  z-index: 1;
+  display: block;
+}
+
