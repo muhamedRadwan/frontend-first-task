@@ -18,7 +18,7 @@ You are free to use  framework (React) or go vanilla.
 - Mobile responsiveness.
 - Clear folder structure.
 - A `README.md` that explains how to run the project.
-
+- Figma Task https://www.figma.com/design/IRmCqEAIUSXhWVxDjnTDrh/Untitled?node-id=0-1&t=RnnCiQZ17gnnvcBk-1
 ## ⏱ Deadline
 
 The last Date for this task is 03/09/2025
@@ -40,4 +40,5 @@ The last Date for this task is 03/09/2025
 - Code quality and readability.
 
 Good luck!
+
 
