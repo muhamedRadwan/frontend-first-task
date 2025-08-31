@@ -21,7 +21,7 @@ You are free to use  framework (React) or go vanilla.
 
 ## ⏱ Deadline
 
-The last Date for this task is 10/04/2025
+The last Date for this task is 03/09/2025
 
 ## 📬 Submission
 
@@ -40,3 +40,4 @@ The last Date for this task is 10/04/2025
 - Code quality and readability.
 
 Good luck!
+
