@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VClasses - Learning Management System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <!-- Logo Section -->
+            <div class="navbar-logo-section">
+                <a href="#" class="navbar-logo" data-en="VClasses" data-ar="فصول">VClasses</a>
+
+                <!-- Theme Toggle -->
+                <div class="theme-toggle">
+                    <input type="checkbox" id="themeToggle" class="theme-toggle-input">
+                    <label for="themeToggle" class="theme-toggle-label">
+                        <div class="toggle-track">
+                            <div class="toggle-thumb">
+                                <i class="sun-icon" data-lucide="sun"></i>
+                                <i class="moon-icon" data-lucide="moon"></i>
+                            </div>
+                            <div class="toggle-stars">• •</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Navigation Icons -->
+            <div class="navbar-icons">
+                <button class="nav-icon-btn" id="notificationsBtn" data-tooltip-en="Notifications (3 new)"
+                    data-tooltip-ar="الإشعارات (3 جديدة)">
+                    <i data-lucide="bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+
+                <button class="nav-icon-btn" id="cartBtn" data-tooltip-en="Shopping Cart (5 items)"
+                    data-tooltip-ar="سلة التسوق (5 عناصر)">
+                    <i data-lucide="shopping-cart"></i>
+                    <span class="cart-badge">5</span>
+                </button>
+
+                <button class="nav-icon-btn" id="languageToggle" data-tooltip-en="Switch Language"
+                    data-tooltip-ar="تغيير اللغة">
+                    <i data-lucide="globe"></i>
+                </button>
+            </div>
+
+            <!-- Auth Buttons (Before Login) -->
+            <div class="navbar-auth" id="navbarAuth">
+                <button class="auth-btn secondary" id="loginBtn" data-en="Sign In" data-ar="تسجيل دخول">
+                    <i data-lucide="log-in"></i>
+                    <span data-en="Sign In" data-ar="تسجيل دخول">Sign In</span>
+                </button>
+
+                <button class="auth-btn primary" id="signupBtn" data-en="Get Started" data-ar="ابدأ الآن">
+                    <i data-lucide="user-plus"></i>
+                    <span data-en="Get Started" data-ar="ابدأ الآن">Get Started</span>
+                </button>
+            </div>
+
+            <!-- User Menu (After Login) -->
+            <div class="navbar-user" id="navbarUser" style="display: none;">
+                <div class="user-profile">
+                    <div class="user-avatar">U</div>
+                    <span class="user-name" data-en="Ahmed Ali" data-ar="أحمد علي">Ahmed Ali</span>
+                    <i data-lucide="chevron-down"></i>
+                </div>
+                <div class="user-dropdown">
+                    <a href="#" class="dropdown-item" data-en="My Profile" data-ar="الملف الشخصي">
+                        <i data-lucide="user"></i>
+                        <span data-en="My Profile" data-ar="الملف الشخصي">My Profile</span>
+                    </a>
+                    <a href="#" class="dropdown-item" data-en="My Courses" data-ar="دوراتي">
+                        <i data-lucide="book-open"></i>
+                        <span data-en="My Courses" data-ar="دوراتي">My Courses</span>
+                    </a>
+                    <a href="#" class="dropdown-item" data-en="Settings" data-ar="الإعدادات">
+                        <i data-lucide="settings"></i>
+                        <span data-en="Settings" data-ar="الإعدادات">Settings</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <button class="dropdown-item logout-btn" data-en="Sign Out" data-ar="تسجيل خروج">
+                        <i data-lucide="log-out"></i>
+                        <span data-en="Sign Out" data-ar="تسجيل خروج">Sign Out</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" data-tooltip-en="Menu" data-tooltip-ar="القائمة">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-menu-content">
+                <div class="mobile-menu-section">
+                    <button class="mobile-menu-item" id="mobileNotificationsBtn" data-en="Notifications (3 new)"
+                        data-ar="الإشعارات (3 جديدة)">
+                        <i data-lucide="bell"></i>
+                        <span data-en="Notifications (3 new)" data-ar="الإشعارات (3 جديدة)">Notifications (3 new)</span>
+                        <span class="mobile-badge">3</span>
+                    </button>
+
+                    <button class="mobile-menu-item" id="mobileCartBtn" data-en="Shopping Cart (5 items)"
+                        data-ar="سلة التسوق (5 عناصر)">
+                        <i data-lucide="shopping-cart"></i>
+                        <span data-en="Shopping Cart (5 items)" data-ar="سلة التسوق (5 عناصر)">Shopping Cart (5
+                            items)</span>
+                        <span class="mobile-badge">5</span>
+                    </button>
+
+                    <button class="mobile-menu-item" id="mobileLanguageBtn" data-en="Switch Language"
+                        data-ar="تغيير اللغة">
+                        <i data-lucide="globe"></i>
+                        <span data-en="Switch Language" data-ar="تغيير اللغة">Switch Language</span>
+                    </button>
+                </div>
+
+                <div class="mobile-menu-section" id="mobileAuth">
+                    <button class="mobile-menu-item auth" id="mobileLoginBtn" data-en="Sign In" data-ar="تسجيل دخول">
+                        <i data-lucide="log-in"></i>
+                        <span data-en="Sign In" data-ar="تسجيل دخول">Sign In</span>
+                    </button>
+
+                    <button class="mobile-menu-item auth primary" id="mobileSignupBtn" data-en="Get Started"
+                        data-ar="ابدأ الآن">
+                        <i data-lucide="user-plus"></i>
+                        <span data-en="Get Started" data-ar="ابدأ الآن">Get Started</span>
+                    </button>
+                </div>
+
+                <div class="mobile-menu-section" id="mobileUser" style="display: none;">
+                    <div class="mobile-user-info">
+                        <div class="mobile-user-avatar">U</div>
+                        <div class="mobile-user-details">
+                            <span class="mobile-user-name" data-en="Ahmed Ali" data-ar="أحمد علي">Ahmed Ali</span>
+                            <span class="mobile-user-email" data-en="ahmed@example.com"
+                                data-ar="أحمد@مثال.com">ahmed@example.com</span>
+                        </div>
+                    </div>
+                    <button class="mobile-menu-item logout" data-en="Sign Out" data-ar="تسجيل خروج">
+                        <i data-lucide="log-out"></i>
+                        <span data-en="Sign Out" data-ar="تسجيل خروج">Sign Out</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Notifications Panel -->
+    <div class="notifications-panel" id="notificationsPanel">
+        <div class="notifications-header">
+            <h3 data-en="Notifications" data-ar="الإشعارات">Notifications</h3>
+            <button class="close-panel" id="closeNotifications">
+                <i data-lucide="x"></i>
+            </button>
+        </div>
+        <div class="notifications-list">
+            <div class="notification-item unread">
+                <div class="notification-icon">
+                    <i data-lucide="book-open"></i>
+                </div>
+                <div class="notification-content">
+                    <h4 data-en="New Course Available" data-ar="دورة جديدة متاحة">New Course Available</h4>
+                    <p data-en="Advanced JavaScript course is now available for enrollment"
+                        data-ar="دورة JavaScript المتقدمة متاحة الآن للتسجيل">Advanced JavaScript course is now
+                        available for enrollment</p>
+                    <span class="notification-time" data-en="2 hours ago" data-ar="منذ ساعتين">2 hours ago</span>
+                </div>
+            </div>
+            <div class="notification-item unread">
+                <div class="notification-icon">
+                    <i data-lucide="award"></i>
+                </div>
+                <div class="notification-content">
+                    <h4 data-en="Certificate Earned" data-ar="شهادة مكتسبة">Certificate Earned</h4>
+                    <p data-en="Congratulations! You've earned a certificate for Web Development Basics"
+                        data-ar="تهانينا! لقد حصلت على شهادة أساسيات تطوير الويب">Congratulations! You've earned a
+                        certificate for Web Development Basics</p>
+                    <span class="notification-time" data-en="1 day ago" data-ar="منذ يوم">1 day ago</span>
+                </div>
+            </div>
+            <div class="notification-item">
+                <div class="notification-icon">
+                    <i data-lucide="calendar"></i>
+                </div>
+                <div class="notification-content">
+                    <h4 data-en="Live Session Reminder" data-ar="تذكير بالجلسة المباشرة">Live Session Reminder</h4>
+                    <p data-en="Your live coding session starts in 30 minutes"
+                        data-ar="جلسة البرمجة المباشرة تبدأ خلال 30 دقيقة">Your live coding session starts in 30 minutes
+                    </p>
+                    <span class="notification-time" data-en="3 days ago" data-ar="منذ 3 أيام">3 days ago</span>
+                </div>
+            </div>
+        </div>
+        <div class="notifications-footer">
+            <button class="mark-all-read" data-en="Mark All as Read" data-ar="تحديد الكل كمقروء">Mark All as
+                Read</button>
+        </div>
+    </div>
+
+    <!-- Shopping Cart Panel -->
+    <div class="cart-panel" id="cartPanel">
+        <div class="cart-header">
+            <h3 data-en="Shopping Cart" data-ar="سلة التسوق">Shopping Cart</h3>
+            <button class="close-panel" id="closeCart">
+                <i data-lucide="x"></i>
+            </button>
+        </div>
+        <div class="cart-items">
+            <div class="cart-item">
+                <div class="cart-item-image js-course">JS</div>
+                <div class="cart-item-details">
+                    <h4 data-en="Advanced JavaScript" data-ar="JavaScript المتقدم">Advanced JavaScript</h4>
+                    <p data-en="Complete course with projects" data-ar="دورة كاملة مع مشاريع">Complete course with
+                        projects</p>
+                    <span class="cart-item-price" data-en="$99.99" data-ar="99.99$">$99.99</span>
+                </div>
+                <button class="remove-item">
+                    <i data-lucide="trash-2"></i>
+                </button>
+            </div>
+            <div class="cart-item">
+                <div class="cart-item-image react-course">RE</div>
+                <div class="cart-item-details">
+                    <h4 data-en="React Essentials" data-ar="أساسيات React">React Essentials</h4>
+                    <p data-en="Build modern web applications" data-ar="بناء تطبيقات الويب الحديثة">Build modern web
+                        applications</p>
+                    <span class="cart-item-price" data-en="$79.99" data-ar="79.99$">$79.99</span>
+                </div>
+                <button class="remove-item">
+                    <i data-lucide="trash-2"></i>
+                </button>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span data-en="Total:" data-ar="المجموع:">Total:</span>
+                <span class="total-price" data-en="$179.98" data-ar="179.98$">$179.98</span>
+            </div>
+            <button class="checkout-btn" data-en="Proceed to Checkout" data-ar="إتمام الشراء">Proceed to
+                Checkout</button>
+        </div>
+    </div>
+
+    <!-- Login/Signup Modal -->
+    <div class="modal-overlay" id="authModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2 class="modal-title" data-en="Welcome to VClasses" data-ar="مرحباً بك في فصول">Welcome to VClasses
+                </h2>
+                <button class="modal-close" id="closeModal">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+
+            <div class="modal-tabs">
+                <button class="tab-btn active" id="loginTab" data-en="Sign In" data-ar="تسجيل دخول">Sign In</button>
+                <button class="tab-btn" id="signupTab" data-en="Create Account" data-ar="إنشاء حساب">Create
+                    Account</button>
+            </div>
+
+            <!-- Login Form -->
+            <form class="auth-form active" id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail" data-en="Email Address" data-ar="البريد الإلكتروني">Email Address</label>
+                    <div class="input-wrapper">
+                        <i data-lucide="mail"></i>
+                        <input type="email" id="loginEmail" name="email" required data-placeholder-en="Enter your email"
+                            data-placeholder-ar="أدخل بريدك الإلكتروني">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="loginPassword" data-en="Password" data-ar="كلمة المرور">Password</label>
+                    <div class="input-wrapper">
+                        <i data-lucide="lock"></i>
+                        <input type="password" id="loginPassword" name="password" required
+                            data-placeholder-en="Enter your password" data-placeholder-ar="أدخل كلمة المرور">
+                        <button type="button" class="password-toggle">
+                            <i data-lucide="eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-options">
+                    <label class="checkbox-wrapper">
+                        <input type="checkbox" id="rememberMe" name="remember">
+                        <span class="checkmark"></span>
+                        <span data-en="Remember me" data-ar="تذكرني">Remember me</span>
+                    </label>
+                    <a href="#" class="forgot-password" data-en="Forgot Password?" data-ar="نسيت كلمة المرور؟">Forgot
+                        Password?</a>
+                </div>
+
+                <button type="submit" class="submit-btn" data-en="Sign In" data-ar="تسجيل دخول">
+                    <i data-lucide="log-in"></i>
+                    <span data-en="Sign In" data-ar="تسجيل دخول">Sign In</span>
+                </button>
+            </form>
+
+            <!-- Signup Form -->
+            <form class="auth-form" id="signupForm">
+                <div class="form-group">
+                    <label for="signupName" data-en="Full Name" data-ar="الاسم الكامل">Full Name</label>
+                    <div class="input-wrapper">
+                        <i data-lucide="user"></i>
+                        <input type="text" id="signupName" name="name" required
+                            data-placeholder-en="Enter your full name" data-placeholder-ar="أدخل اسمك الكامل">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="signupEmail" data-en="Email Address" data-ar="البريد الإلكتروني">Email Address</label>
+                    <div class="input-wrapper">
+                        <i data-lucide="mail"></i>
+                        <input type="email" id="signupEmail" name="email" required
+                            data-placeholder-en="Enter your email" data-placeholder-ar="أدخل بريدك الإلكتروني">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="signupPassword" data-en="Password" data-ar="كلمة المرور">Password</label>
+                    <div class="input-wrapper">
+                        <i data-lucide="lock"></i>
+                        <input type="password" id="signupPassword" name="password" required
+                            data-placeholder-en="Create a strong password" data-placeholder-ar="أنشئ كلمة مرور قوية">
+                        <button type="button" class="password-toggle">
+                            <i data-lucide="eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword" data-en="Confirm Password" data-ar="تأكيد كلمة المرور">Confirm
+                        Password</label>
+                    <div class="input-wrapper">
+                        <i data-lucide="lock"></i>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required
+                            data-placeholder-en="Confirm your password" data-placeholder-ar="أكد كلمة المرور">
+                        <button type="button" class="password-toggle">
+                            <i data-lucide="eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-options">
+                    <label class="checkbox-wrapper">
+                        <input type="checkbox" id="agreeTerms" name="terms" required>
+                        <span class="checkmark"></span>
+                        <span data-en="I agree to the Terms & Conditions" data-ar="أوافق على الشروط والأحكام">I agree to
+                            the Terms & Conditions</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="submit-btn" data-en="Create Account" data-ar="إنشاء حساب">
+                    <i data-lucide="user-plus"></i>
+                    <span data-en="Create Account" data-ar="إنشاء حساب">Create Account</span>
+                </button>
+            </form>
+
+            <div class="modal-footer">
+                <p data-en="Or continue with" data-ar="أو استمر باستخدام">Or continue with</p>
+                <div class="social-buttons">
+                    <button class="social-btn google" data-en="Google" data-ar="جوجل">
+                        <i data-lucide="chrome"></i>
+                        <span data-en="Google" data-ar="جوجل">Google</span>
+                    </button>
+                    <button class="social-btn facebook" data-en="Facebook" data-ar="فيسبوك">
+                        <i data-lucide="facebook"></i>
+                        <span data-en="Facebook" data-ar="فيسبوك">Facebook</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-container">
+                <!-- Left Content -->
+                <div class="hero-content">
+                    <div class="content-container">
+                        <!-- Earth Layers Illustration -->
+                        <div class="earth-layers">
+                            <img src="./assets/images/layers.png" alt="Earth's layers" class="layers-image">
+                        </div>
+
+                        <!-- Main Heading -->
+                        <h1 class="hero-title">
+                            <span data-en="Explore the world of rocks!" data-ar="!استكشف عالم الصخور">Explore the world
+                                of
+                                rocks!</span>
+                            <br>
+                            <span class="instructor-intro">
+                                <span data-en="With Mr." data-ar="مع مستر">With Mr.</span>
+                                <span class="instructor-name" data-en="Islam" data-ar="إسلام">Islam</span>
+                            </span>
+                        </h1>
+
+                        <!-- Description -->
+                        <p class="hero-description"
+                            data-en="Embark on an extraordinary journey to uncover the secrets of our planet, with the latest interactive learning methods."
+                            data-ar="انطلق في رحلة استكشافية مذهلة لفهم أسرار كوكب الأرض مع أحدث الطرق التعليمية التفاعلية">
+                            Embark on an extraordinary journey to uncover the secrets of our planet,<br>
+                            with the latest interactive learning methods.
+                        </p>
+
+                        <!-- Call to Action Button -->
+                        <a href="#" class="hero-btn btn-primary" data-en="Inside The Rocks" data-ar="افتح قلب الصخور">
+                            <span data-en="Inside The Rocks" data-ar="افتح قلب الصخور">Inside The Rocks</span>
+                            <i data-lucide="mountain"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Content -->
+                <div class="hero-visual">
+                    <!-- 3D Interactive Sphere -->
+                    <div id="hero-3d-sphere" class="hero-3d-container"></div>
+
+                    <!-- Background Gradient Shape -->
+                    <div class="gradient-blob"></div>
+
+                    <!-- Teacher Image -->
+                    <div class="teacher-container">
+                        <img src="./assets/images/Teacher.png" alt="Mr. Islam - Geology Teacher" class="teacher-image">
+                    </div>
+
+                    <!-- Decorative Elements -->
+                    <div class="decorative-dots"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-section" id="features">
+            <div class="features-container" data-aos="fade-up" data-aos-duration="800">
+                <h2 class="section-title scribble-underline" data-aos="fade-up" data-aos-delay="100">
+                    <span data-en="Why Are We Different?" data-ar="ليه إحنا مختلفين؟ ">Why Are We Different?</span>
+                </h2>
+                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200"
+                    data-en="A Platform Made Just To Help You Reach Your Goal."
+                    data-ar="منصة معمولة مخصوص علشان توصلك لهدفك.">A Platform Made Just To Help You Reach Your
+                    Goal.</p>
+
+                <div class="cards-grid">
+                    <article class="feature-card gradient-purple" data-aos="fade-up" data-aos-delay="300"
+                        data-aos-duration="600">
+                        <div class="feature-icon"><i data-lucide="award"></i></div>
+                        <h3 class="feature-title" data-en="Excellent Results" data-ar="نتائج ممتازة">Excellent Results
+                        </h3>
+                        <p class="feature-text" data-en="Students With The Highest Grades In High School."
+                            data-ar="طلاب حصلوا على أعلى الدرجات في الثانوية العامة">Students With The Highest Grades In
+                            High
+                            School.</p>
+                    </article>
+
+                    <article class="feature-card gradient-green" data-aos="fade-up" data-aos-delay="400"
+                        data-aos-duration="600">
+                        <div class="feature-icon"><i data-lucide="lightbulb"></i></div>
+                        <h3 class="feature-title" data-en="Simplified Explanation" data-ar="شرح مبسط">Simplified
+                            Explanation</h3>
+                        <p class="feature-text" data-en="Breaking Down Complex Concepts Using Practical Examples"
+                            data-ar="تبسيط المفاهيم المعقدة باستخدام الأمثلة العملية">Breaking Down Complex Concepts
+                            Using
+                            Practical Examples</p>
+                    </article>
+
+                    <article class="feature-card gradient-orange" data-aos="fade-up" data-aos-delay="500"
+                        data-aos-duration="600">
+                        <div class="feature-icon"><i data-lucide="clock-4"></i></div>
+                        <h3 class="feature-title" data-en="Saving Time" data-ar="توفير الوقت">Saving Time</h3>
+                        <p class="feature-text"
+                            data-en="Innovative Methods To Memorize Information Faster And More Effectively."
+                            data-ar="طرق مبتكرة لحفظ المعلومات بسرعة وفعالية أكبر">Innovative Methods To Memorize
+                            Information Faster And More Effectively.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Classrooms Section -->
+        <section class="classrooms-section" id="classrooms">
+            <div class="shape-square"></div>
+            <div class="rotating-triangle"></div>
+            <div class="rotating-diamond"></div>
+            <div class="rotating-circle"></div>
+            <div class="classrooms-container" data-aos="fade-up" data-aos-duration="800">
+                <h2 class="classrooms-title scribble-underline" data-aos="fade-up" data-aos-delay="100">
+                    <span data-en="Classrooms" data-ar="الفصول الدراسية">Classrooms</span>
+                </h2>
+                <p class="classrooms-subtitle" data-aos="fade-up" data-aos-delay="200"
+                    data-en="Explore geology's wonders through cutting-edge learning."
+                    data-ar="اكتشف عجائب الجيولوجيا مع أحدث التقنيات التعليمية">
+                    Explore geology's wonders through cutting-edge learning.
+                </p>
+
+                <div class="classrooms-grid">
+                    <article class="classroom-card gradient-orange" data-aos="fade-up" data-aos-delay="300"
+                        data-aos-duration="600">
+                        <div class="card-image">
+                            <img src="./assets/images/students.png" alt="Third Year Students" class="students-img">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title" data-en="Third Year Of High School" data-ar="الصف الثالث الثانوي">
+                                Third Year Of High School</h3>
+                            <p class="card-description" data-en="Master Geology, Be Ready"
+                                data-ar="إتقان الجيولوجيا والاستعداد للجامعة">Master Geology, Be Ready</p>
+                            <button class="card-btn" data-en="Start Learning →" data-ar="ابدأ التعلم ←">Start Learning
+                                →</button>
+                        </div>
+                    </article>
+
+                    <article class="classroom-card gradient-blue" data-aos="fade-up" data-aos-delay="400"
+                        data-aos-duration="600">
+                        <div class="card-image">
+                            <img src="./assets/images/students.png" alt="Second Year Students" class="students-img">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title" data-en="Second Year of High School" data-ar="الصف الثاني الثانوي">
+                                Second Year of High School</h3>
+                            <p class="card-description" data-en="Explore Earth's complex processes."
+                                data-ar="اكتشف العمليات الجيولوجية المعقدة">Explore Earth's complex processes.</p>
+                            <button class="card-btn" data-en="Start Learning →" data-ar="ابدأ التعلم ←">Start Learning
+                                →</button>
+                        </div>
+                    </article>
+
+                    <article class="classroom-card gradient-purple" data-aos="fade-up" data-aos-delay="500"
+                        data-aos-duration="600">
+                        <div class="card-image">
+                            <img src="./assets/images/students.png" alt="First Year Students" class="students-img">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title" data-en="First Year Of High School" data-ar="الصف الأول الثانوي">
+                                First Year Of High School</h3>
+                            <p class="card-description" data-en="Begin Your Geology Journey"
+                                data-ar="ابدأ رحلتك مع أساسيات الجيولوجيا">Begin Your Geology Journey</p>
+                            <button class="card-btn" data-en="Start Learning →" data-ar="ابدأ التعلم ←">Start Learning
+                                →</button>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="explore-all" data-aos="fade-up" data-aos-delay="600">
+                    <button class="explore-btn" data-en="Explore All Levels →" data-ar="استكشف جميع المستويات ←">Explore
+                        All Levels →</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quote Section -->
+        <section class="quote-section" id="quote">
+            <div class="quote-container" data-aos="fade-up" data-aos-duration="800">
+                <div class="quote-icon" data-aos="fade-up" data-aos-delay="100">
+                    <i data-lucide="message-square-quote"></i>
+                </div>
+
+                <blockquote class="quote-text" data-aos="fade-up" data-aos-delay="200">
+                    <q data-en="Learning never ends, and geology opens the doors to understanding our beautiful planet."
+                        data-ar="التعلم رحلة لا تنتهي، والجيولوجيا تفتح لنا أبواب فهم كوكبنا الجميل">
+                        Learning never ends, and geology opens the doors to understanding our beautiful planet.
+                    </q>
+                </blockquote>
+
+                <cite class="quote-author" data-aos="fade-up" data-aos-delay="300">
+                    <span data-en="Mr. Islam, Geology Teacher" data-ar="الأستاذ إسلام، معلم الجيولوجيا">
+                        Mr. Islam, Geology Teacher
+                    </span>
+                </cite>
+
+                <div class="quote-cta" data-aos="fade-up" data-aos-delay="400">
+                    <button class="quote-btn" data-en="Start Learning" data-ar="انضم الآن">
+                        <span data-en="Start Learning" data-ar="انضم الآن">Start Learning</span>
+                        <i data-lucide="arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Background Elements -->
+            <div class="quote-glow-left"></div>
+            <div class="quote-glow-right"></div>
+            <div class="quote-dots"></div>
+            <div class="quote-stars">
+                <div class="star-1"></div>
+                <div class="star-2"></div>
+                <div class="star-3"></div>
+            </div>
+        </section>
+
+        <!-- Download Here Section -->
+        <section class="download-here" id="download">
+            <div class="download-container">
+                <div class="download-grid">
+                    <div class="download-left" data-aos="fade-right" data-aos-duration="600" data-aos-delay="100">
+                        <h2 class="download-title" data-aos="fade-up" data-aos-duration="500" data-aos-delay="200">
+                            <span data-en="Download the" data-ar="حمل التطبيق">Download the</span>
+                            <span class="accent" data-en="App" data-ar="الآن">App</span>
+                            <i data-lucide="download" class="download-icon"></i>
+                        </h2>
+                        <p class="download-desc" data-aos="fade-up" data-aos-duration="500" data-aos-delay="300"
+                            data-en="Get The Geology App On Your Phone And Enjoy Learning Anytime, Anywhere."
+                            data-ar="احصل على تطبيق الجيولوجيا على هاتفك واستمتع بالتعلم في أي وقت ومكان">Get The
+                            Geology App On Your Phone And Enjoy Learning Anytime, Anywhere.</p>
+                        <div class="stores" data-aos="fade-up" data-aos-duration="500" data-aos-delay="400">
+                            <a href="#" class="store windows" data-aos="zoom-in" data-aos-duration="400"
+                                data-aos-delay="500">
+                                <img src="assets/images/windows-en.png" alt="Windows">
+                            </a>
+                            <a href="#" class="store huawei" data-aos="zoom-in" data-aos-duration="400"
+                                data-aos-delay="550">
+                                <img src="assets/images/huawei-en.png" alt="Huawei">
+                            </a>
+                            <a href="#" class="store google" data-aos="zoom-in" data-aos-duration="400"
+                                data-aos-delay="600">
+                                <img src="assets/images/googleplay-en.png" alt="Google Play">
+                            </a>
+                            <a href="#" class="store apple" data-aos="zoom-in" data-aos-duration="400"
+                                data-aos-delay="650">
+                                <img src="assets/images/appstore-en.png" alt="App Store">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="download-right" data-aos="fade-left" data-aos-duration="600" data-aos-delay="200">
+                        <div class="phone-wrap" data-aos="zoom-in-up" data-aos-duration="600" data-aos-delay="300">
+                            <div class="phone">
+                                <img src="assets/images/vclasses-logo.png" alt="VClasses Logo">
+                            </div>
+                            <div class="badge dl" data-aos="bounce-in" data-aos-duration="500" data-aos-delay="600"><i
+                                    data-lucide="download"></i></div>
+                            <div class="badge star" data-aos="bounce-in" data-aos-duration="500" data-aos-delay="700">
+                            </div>
+                            <div class="badge square" data-aos="bounce-in" data-aos-duration="500" data-aos-delay="800">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <!-- Footer Section -->
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-grid">
+                    <!-- Brand & Contact Column -->
+                    <div class="footer-brand" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100">
+                        <h3 class="footer-title" data-aos="fade-up" data-aos-duration="500" data-aos-delay="200"
+                            data-en="Mr. Islam for Geology" data-ar="الاستاذ إسلام للجيولوجيا">Mr.
+                            Islam for Geology</h3>
+                        <p class="footer-desc" data-aos="fade-up" data-aos-duration="500" data-aos-delay="300"
+                            data-en="An educational platform specialized in geology, offering the best curricula and modern methods to teach students the secrets of our planet."
+                            data-ar="منصة تعليمية متخصصة في علم الجيولوجيا، نقدم أفضل المناهج والطرق الحديثة لتعليم الطلاب أسرار كوكب الأرض.">
+                            An educational platform specialized in geology, offering the best curricula and modern
+                            methods to teach students the secrets of our planet.</p>
+
+                        <div class="contact-info" data-aos="fade-up" data-aos-duration="500" data-aos-delay="400">
+                            <div class="contact-item" data-aos="fade-up" data-aos-duration="400" data-aos-delay="450">
+                                <i data-lucide="mail" class="contact-icon"></i>
+                                <span class="contact-text">eslam.geology@gmail.com</span>
+                            </div>
+                            <div class="contact-item" data-aos="fade-up" data-aos-duration="400" data-aos-delay="500">
+                                <i data-lucide="phone" class="contact-icon"></i>
+                                <span class="contact-text">+20 123 456 789</span>
+                            </div>
+                            <div class="contact-item" data-aos="fade-up" data-aos-duration="400" data-aos-delay="550">
+                                <i data-lucide="map-pin" class="contact-icon"></i>
+                                <span class="contact-text" data-en="Cairo, Egypt"
+                                    data-ar="القاهرة, جمهورية مصر العربية">Cairo, Egypt</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Links Column -->
+                    <div class="footer-links" data-aos="fade-up" data-aos-duration="600" data-aos-delay="200">
+                        <h4 class="footer-heading" data-aos="fade-up" data-aos-duration="500" data-aos-delay="300"
+                            data-en="Quick Links" data-ar="روابط سريعه">Quick Links</h4>
+                        <ul class="footer-list" data-aos="fade-up" data-aos-duration="500" data-aos-delay="400">
+                            <li data-aos="fade-up" data-aos-duration="400" data-aos-delay="450"><a href="#"
+                                    data-en="Why Choose Us" data-ar="لماذا نحن">Why Choose Us</a></li>
+                            <li data-aos="fade-up" data-aos-duration="400" data-aos-delay="500"><a href="#"
+                                    data-en="Classroom" data-ar="الفصول الدراسية">Classroom</a></li>
+                            <li data-aos="fade-up" data-aos-duration="400" data-aos-delay="550"><a href="#"
+                                    data-en="Download App" data-ar="تحميل التطبيق">Download App</a></li>
+                            <li data-aos="fade-up" data-aos-duration="400" data-aos-delay="600"><a href="#"
+                                    data-en="Contact Us" data-ar="التواصل">Contact Us</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Social Media Column -->
+                    <div class="footer-social" data-aos="fade-up" data-aos-duration="600" data-aos-delay="300">
+                        <h4 class="footer-heading" data-aos="fade-up" data-aos-duration="500" data-aos-delay="400"
+                            data-en="Follow Us" data-ar="تابعنا">Follow Us</h4>
+                        <div class="social-icons" data-aos="fade-up" data-aos-duration="500" data-aos-delay="500">
+                            <a href="#" class="social-icon facebook" data-aos="zoom-in" data-aos-duration="400"
+                                data-aos-delay="550">
+                                <i data-lucide="facebook"></i>
+                            </a>
+                            <a href="#" class="social-icon telegram" data-aos="zoom-in" data-aos-duration="400"
+                                data-aos-delay="600">
+                                <i data-lucide="send"></i>
+                            </a>
+                            <a href="#" class="social-icon instagram" data-aos="zoom-in" data-aos-duration="400"
+                                data-aos-delay="650">
+                                <i data-lucide="instagram"></i>
+                            </a>
+                            <a href="#" class="social-icon youtube" data-aos="zoom-in" data-aos-duration="400"
+                                data-aos-delay="700">
+                                <i data-lucide="youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright Bar -->
+            <div class="footer-copyright" data-aos="fade-up" data-aos-duration="500" data-aos-delay="400">
+                <div class="copyright-container">
+                    <p class="copyright-text">
+                        <span data-en="Developed By" data-ar="تم التطوير بواسطة">Developed By</span>
+                        <span class="vclasses">Vclasses</span>
+                        <span data-en="All Copy Rights Reserved" data-ar="جميع الحقوق محفوظة">All Copy Rights
+                            Reserved</span>
+                        <span class="year">@2025</span>
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Back to Top Button -->
+        <button class="back-to-top" id="backToTop" aria-label="Back to top">
+            <i data-lucide="chevron-up"></i>
+        </button>
+
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
