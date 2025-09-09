@@ -1,0 +1,9 @@
+.background {
+  background-image: url("/students.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-top-left-radius: 80px;
+  border-top-right-radius: 80px;
+}
+
