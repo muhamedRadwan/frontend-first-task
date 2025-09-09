@@ -1315,273 +1315,683 @@ const scrollManager = {
 // Animation Management
 const animationManager = {
     init() {
-        // Add entrance animations
-        window.addEventListener('load', () => {
-            const navbar = document.querySelector('.navbar');
-            this.initHeroAnimations();
-        });
+        try {
+            // Add entrance animations
+            window.addEventListener('load', () => {
+                try {
+                    const navbar = document.querySelector('.navbar');
+                    this.initHeroAnimations();
 
-        // Add scroll animations
-        this.setupScrollAnimations();
+                    // Initialize hero background interactions
+                    this.initHeroBackgroundInteractions();
+                } catch (error) {
+                    console.error('Error in window load handler:', error);
+                }
+            });
 
-        // Add parallax effects
-        this.setupParallaxEffects();
+            // Add scroll animations
+            this.setupScrollAnimations();
+
+            // Add parallax effects
+            this.setupParallaxEffects();
+        } catch (error) {
+            console.error('Error initializing animation manager:', error);
+        }
     },
 
     initHeroAnimations() {
-        console.log('Initializing Hero Animations...');
+        try {
+            console.log('Initializing Hero Animations...');
 
-        // Staggered animation for hero elements
-        const heroElements = document.querySelectorAll('.content-container > *');
-        console.log('Found hero elements:', heroElements.length);
-        heroElements.forEach((el, index) => {
-            el.style.animationDelay = `${index * 0.2}s`;
-        });
+            // Staggered animation for hero elements
+            const heroElements = document.querySelectorAll('.content-container > *');
+            console.log('Found hero elements:', heroElements.length);
+            heroElements.forEach((el, index) => {
+                try {
+                    el.style.animationDelay = `${index * 0.2}s`;
+                } catch (error) {
+                    console.error('Error setting animation delay for hero element:', error);
+                }
+            });
 
-        // Gradient blob animation
-        this.setupGradientBlob();
+            // Gradient blob animation
+            this.setupGradientBlob();
 
-        // Earth layers labels animation
-        this.setupEarthLayers();
+            // Teacher blob animation
+            this.setupTeacherBlob();
+            this.setupInstructorName();
 
-        console.log('Hero animations initialized successfully!');
+            // Earth layers labels animation
+            this.setupEarthLayers();
+
+            console.log('Hero animations initialized successfully!');
+        } catch (error) {
+            console.error('Error initializing hero animations:', error);
+        }
     },
 
 
 
     setupGradientBlob() {
-        const blob = document.querySelector('.gradient-blob');
-        if (blob) {
-            console.log('Gradient blob found, setting up mouse follow effect');
-            // Add mouse follow effect
-            document.addEventListener('mousemove', (e) => {
-                const { clientX, clientY } = e;
-                const { innerWidth, innerHeight } = window;
+        try {
+            const blob = document.querySelector('.gradient-blob');
+            if (blob) {
+                console.log('Gradient blob found, setting up mouse follow effect');
+                // Add mouse follow effect
+                document.addEventListener('mousemove', (e) => {
+                    try {
+                        const { clientX, clientY } = e;
+                        const { innerWidth, innerHeight } = window;
 
-                const x = (clientX / innerWidth - 0.5) * 20;
-                const y = (clientY / innerHeight - 0.5) * 20;
+                        const x = (clientX / innerWidth - 0.5) * 20;
+                        const y = (clientY / innerHeight - 0.5) * 20;
 
-                blob.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+                        blob.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+                    } catch (error) {
+                        console.error('Error in gradient blob mouse follow effect:', error);
+                    }
+                });
+            } else {
+                console.warn('Gradient blob not found');
+            }
+        } catch (error) {
+            console.error('Error setting up gradient blob:', error);
+        }
+    },
+
+    setupTeacherBlob() {
+        try {
+            const teacherBlob = document.querySelector('.teacher-blob');
+            const teacherContainer = document.querySelector('.teacher-container');
+
+            if (teacherBlob && teacherContainer) {
+                console.log('Teacher blob found, setting up interactive effects');
+
+                // Check for reduced motion preference
+                const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+                if (prefersReducedMotion) {
+                    console.log('Reduced motion detected, skipping animations');
+                    // Simple reduced motion - no clip-path changes needed
+                    return;
+                }
+
+                // Throttle hover effects for better performance
+                let hoverTimeout;
+
+                // Add hover effect
+                teacherContainer.addEventListener('mouseenter', () => {
+                    try {
+                        clearTimeout(hoverTimeout);
+                        // Keep the float animation running; only enhance the shadow
+                        teacherBlob.style.animationPlayState = 'running';
+                        teacherBlob.style.filter = 'drop-shadow(0 26px 52px rgba(251, 54, 52, 0.55))';
+                    } catch (error) {
+                        console.error('Error in teacher blob hover effect:', error);
+                    }
+                });
+
+                teacherContainer.addEventListener('mouseleave', () => {
+                    try {
+                        hoverTimeout = setTimeout(() => {
+                            teacherBlob.style.animationPlayState = 'running';
+                            teacherBlob.style.filter = 'drop-shadow(0 15px 30px rgba(251, 54, 52, 0.3))';
+                        }, 100);
+                    } catch (error) {
+                        console.error('Error in teacher blob mouse leave effect:', error);
+                    }
+                });
+
+                // Add click effect
+                teacherContainer.addEventListener('click', () => {
+                    try {
+                        this.triggerTeacherBlobEffect(teacherBlob);
+                    } catch (error) {
+                        console.error('Error in teacher blob click effect:', error);
+                    }
+                });
+
+                // Add keyboard support
+                teacherContainer.addEventListener('keydown', (e) => {
+                    try {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            this.triggerTeacherBlobEffect(teacherBlob);
+                        }
+                    } catch (error) {
+                        console.error('Error in teacher blob keyboard effect:', error);
+                    }
+                });
+            } else {
+                console.warn('Teacher blob or container not found');
+            }
+        } catch (error) {
+            console.error('Error setting up teacher blob:', error);
+        }
+    },
+
+    triggerTeacherBlobEffect(teacherBlob) {
+        try {
+            // Pulse the shadow briefly to indicate interaction. Keep animation running.
+            teacherBlob.style.filter = 'drop-shadow(0 30px 60px rgba(252, 130, 13, 0.75))';
+
+            setTimeout(() => {
+                try {
+                    teacherBlob.style.filter = 'drop-shadow(0 15px 30px rgba(251, 54, 52, 0.3))';
+                } catch (error) {
+                    console.error('Error in teacher blob effect timeout:', error);
+                }
+            }, 300);
+        } catch (error) {
+            console.error('Error in teacher blob effect:', error);
+        }
+    },
+
+    cleanupTeacherBlob() {
+        try {
+            const teacherBlob = document.querySelector('.teacher-blob');
+            const teacherContainer = document.querySelector('.teacher-container');
+            const teacherImage = teacherContainer?.querySelector('.teacher-image');
+
+            if (teacherBlob && teacherContainer) {
+                // Remove event listeners and reset styles
+                teacherBlob.style.animation = '';
+                teacherBlob.style.transform = '';
+                teacherBlob.style.filter = '';
+                teacherBlob.style.animationPlayState = '';
+
+                // Simple cleanup - no clip-path reset needed
+
+                console.log('Teacher blob cleanup completed');
+            }
+        } catch (error) {
+            console.error('Error in teacher blob cleanup:', error);
+        }
+    },
+
+    cleanupInstructorName() {
+        try {
+            const instructorName = document.querySelector('.instructor-name');
+            const instructorNameBg = document.querySelector('.instructor-name-bg');
+            const instructorNameText = document.querySelector('.instructor-name-text');
+
+            if (instructorName && instructorNameBg && instructorNameText) {
+                // Reset styles
+                instructorNameBg.style.animation = '';
+                instructorNameBg.style.transform = '';
+                instructorNameBg.style.filter = '';
+
+                instructorNameText.style.transform = '';
+                instructorNameText.style.textShadow = '';
+
+                console.log('Instructor name cleanup completed');
+            }
+        } catch (error) {
+            console.error('Error in instructor name cleanup:', error);
+        }
+    },
+
+    // Initialize hero background interactions
+    initHeroBackgroundInteractions() {
+        try {
+            const heroSection = document.querySelector('.hero-section');
+            const floatingRocks = document.querySelectorAll('.floating-rock');
+            const crystals = document.querySelectorAll('.crystal');
+            const waves = document.querySelectorAll('.geological-wave');
+
+            if (!heroSection) return;
+
+            // Mouse move parallax effect
+            heroSection.addEventListener('mousemove', (e) => {
+                try {
+                    const rect = heroSection.getBoundingClientRect();
+                    const x = (e.clientX - rect.left) / rect.width;
+                    const y = (e.clientY - rect.top) / rect.height;
+
+                    // Parallax effect for rocks
+                    floatingRocks.forEach((rock, index) => {
+                        const speed = 0.02 + (index * 0.01);
+                        const moveX = (x - 0.5) * speed * 100;
+                        const moveY = (y - 0.5) * speed * 100;
+                        rock.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                    });
+
+                    // Parallax effect for crystals
+                    crystals.forEach((crystal, index) => {
+                        const speed = 0.03 + (index * 0.01);
+                        const moveX = (x - 0.5) * speed * 80;
+                        const moveY = (y - 0.5) * speed * 80;
+                        crystal.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                    });
+
+                    // Parallax effect for waves
+                    waves.forEach((wave, index) => {
+                        const speed = 0.01 + (index * 0.005);
+                        const moveX = (x - 0.5) * speed * 50;
+                        wave.style.transform = `translateX(${moveX}px)`;
+                    });
+                } catch (error) {
+                    console.error('Error in mouse move handler:', error);
+                }
             });
-        } else {
-            console.warn('Gradient blob not found');
+
+            // Mouse leave - reset positions
+            heroSection.addEventListener('mouseleave', () => {
+                try {
+                    floatingRocks.forEach(rock => {
+                        rock.style.transform = '';
+                    });
+                    crystals.forEach(crystal => {
+                        crystal.style.transform = '';
+                    });
+                    waves.forEach(wave => {
+                        wave.style.transform = '';
+                    });
+                } catch (error) {
+                    console.error('Error in mouse leave handler:', error);
+                }
+            });
+
+            // Click effect on crystals
+            crystals.forEach(crystal => {
+                crystal.addEventListener('click', () => {
+                    try {
+                        crystal.style.animation = 'none';
+                        crystal.style.transform = 'scale(1.5) rotate(180deg)';
+                        crystal.style.filter = 'drop-shadow(0 0 20px rgba(255, 255, 255, 0.8))';
+
+                        setTimeout(() => {
+                            crystal.style.animation = '';
+                            crystal.style.transform = '';
+                            crystal.style.filter = '';
+                        }, 1000);
+                    } catch (error) {
+                        console.error('Error in crystal click handler:', error);
+                    }
+                });
+            });
+
+        } catch (error) {
+            console.error('Error initializing hero background interactions:', error);
+        }
+    },
+
+    setupInstructorName() {
+        try {
+            const instructorName = document.querySelector('.instructor-name');
+            const instructorNameBg = document.querySelector('.instructor-name-bg');
+            const instructorNameText = document.querySelector('.instructor-name-text');
+
+            if (instructorName && instructorNameBg && instructorNameText) {
+                console.log('Instructor name found, setting up interactive effects');
+
+                // Check for reduced motion preference
+                const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+                if (prefersReducedMotion) {
+                    console.log('Reduced motion detected, skipping instructor name animations');
+                    return;
+                }
+
+                // Add click effect
+                instructorName.addEventListener('click', () => {
+                    try {
+                        this.triggerInstructorNameEffect(instructorNameBg, instructorNameText);
+                    } catch (error) {
+                        console.error('Error in instructor name click effect:', error);
+                    }
+                });
+
+                // Add keyboard support
+                instructorName.addEventListener('keydown', (e) => {
+                    try {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            this.triggerInstructorNameEffect(instructorNameBg, instructorNameText);
+                        }
+                    } catch (error) {
+                        console.error('Error in instructor name keyboard effect:', error);
+                    }
+                });
+
+                // Make it focusable
+                instructorName.setAttribute('tabindex', '0');
+                instructorName.setAttribute('role', 'button');
+                instructorName.setAttribute('aria-label', 'Interactive instructor name with animated background');
+            } else {
+                console.warn('Instructor name elements not found');
+            }
+        } catch (error) {
+            console.error('Error setting up instructor name:', error);
+        }
+    },
+
+    triggerInstructorNameEffect(instructorNameBg, instructorNameText) {
+        try {
+            // Pulse effect
+            instructorNameBg.style.animation = 'none';
+            instructorNameBg.style.transform = 'translateY(-5px) scale(1.1)';
+            instructorNameBg.style.filter = 'drop-shadow(0 10px 20px rgba(252, 130, 13, 0.6))';
+
+            instructorNameText.style.transform = 'translateY(-2px) scale(1.05)';
+            instructorNameText.style.textShadow = '0 3px 6px rgba(0, 0, 0, 0.5)';
+
+            setTimeout(() => {
+                try {
+                    instructorNameBg.style.animation = 'instructorNameFloat 4s ease-in-out infinite';
+                    instructorNameBg.style.transform = '';
+                    instructorNameBg.style.filter = '';
+
+                    instructorNameText.style.transform = '';
+                    instructorNameText.style.textShadow = '';
+                } catch (error) {
+                    console.error('Error in instructor name effect timeout:', error);
+                }
+            }, 400);
+        } catch (error) {
+            console.error('Error in instructor name effect:', error);
         }
     },
 
     setupEarthLayers() {
-        const labels = document.querySelectorAll('.layer-label');
-        console.log('Found earth layer labels:', labels.length);
-        labels.forEach((label, index) => {
-            // Add click interaction
-            label.addEventListener('click', () => {
-                utils.addAnimation(label, 'bounce');
+        try {
+            const labels = document.querySelectorAll('.layer-label');
+            console.log('Found earth layer labels:', labels.length);
+            labels.forEach((label, index) => {
+                try {
+                    // Add click interaction
+                    label.addEventListener('click', () => {
+                        try {
+                            utils.addAnimation(label, 'bounce');
 
-                // Show tooltip with layer info
-                this.showLayerInfo(label, index);
+                            // Show tooltip with layer info
+                            this.showLayerInfo(label, index);
+                        } catch (error) {
+                            console.error('Error in earth layer click interaction:', error);
+                        }
+                    });
+                } catch (error) {
+                    console.error('Error setting up earth layer label:', error);
+                }
             });
-        });
+        } catch (error) {
+            console.error('Error setting up earth layers:', error);
+        }
     },
 
     showLayerInfo(label, index) {
-        const layerInfo = [
-            { en: 'Earth\'s outermost layer', ar: 'الطبقة الخارجية للأرض' },
-            { en: 'Upper part of Earth\'s mantle', ar: 'الجزء العلوي من وشاح الأرض' },
-            { en: 'Lower part of Earth\'s mantle', ar: 'الجزء السفلي من وشاح الأرض' },
-            { en: 'Liquid outer core of Earth', ar: 'النواة الخارجية السائلة للأرض' },
-            { en: 'Solid inner core of Earth', ar: 'النواة الداخلية الصلبة للأرض' }
-        ];
+        try {
+            const layerInfo = [
+                { en: 'Earth\'s outermost layer', ar: 'الطبقة الخارجية للأرض' },
+                { en: 'Upper part of Earth\'s mantle', ar: 'الجزء العلوي من وشاح الأرض' },
+                { en: 'Lower part of Earth\'s mantle', ar: 'الجزء السفلي من وشاح الأرض' },
+                { en: 'Liquid outer core of Earth', ar: 'النواة الخارجية السائلة للأرض' },
+                { en: 'Solid inner core of Earth', ar: 'النواة الداخلية الصلبة للأرض' }
+            ];
 
-        const info = layerInfo[index];
-        const currentLang = AppState.language;
-        const text = info[currentLang];
+            const info = layerInfo[index];
+            if (info) {
+                const currentLang = AppState.language;
+                const text = info[currentLang];
 
-        utils.showNotification(text, 'info');
+                if (text) {
+                    utils.showNotification(text, 'info');
+                } else {
+                    console.warn('No text found for layer info at index:', index);
+                }
+            } else {
+                console.warn('No layer info found at index:', index);
+            }
+        } catch (error) {
+            console.error('Error showing layer info:', error);
+        }
     },
 
     setupScrollAnimations() {
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        try {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    try {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('fade-in');
+                        }
+                    } catch (error) {
+                        console.error('Error in scroll animation observer:', error);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for animation only (scroll reveal disabled)
+            document.querySelectorAll('.auth-btn, .nav-icon-btn, .hero-btn').forEach(el => {
+                try {
+                    observer.observe(el);
+                } catch (error) {
+                    console.error('Error observing element for scroll animation:', error);
                 }
             });
-        }, observerOptions);
-
-        // Observe elements for animation only (scroll reveal disabled)
-        document.querySelectorAll('.auth-btn, .nav-icon-btn, .hero-btn').forEach(el => {
-            observer.observe(el);
-        });
+        } catch (error) {
+            console.error('Error setting up scroll animations:', error);
+        }
     },
 
     setupParallaxEffects() {
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallaxElements = document.querySelectorAll('.gradient-blob');
+        try {
+            window.addEventListener('scroll', () => {
+                try {
+                    const scrolled = window.pageYOffset;
+                    const parallaxElements = document.querySelectorAll('.gradient-blob');
 
-            parallaxElements.forEach((el, index) => {
-                const speed = 0.3 + (index * 0.1);
-                const yPos = -(scrolled * speed);
-                el.style.transform = `translate(calc(-50% + ${yPos * 0.1}px), calc(-50% + ${yPos}px))`;
+                    parallaxElements.forEach((el, index) => {
+                        try {
+                            const speed = 0.3 + (index * 0.1);
+                            const yPos = -(scrolled * speed);
+                            el.style.transform = `translate(calc(-50% + ${yPos * 0.1}px), calc(-50% + ${yPos}px))`;
+                        } catch (error) {
+                            console.error('Error in parallax effect for element:', error);
+                        }
+                    });
+                } catch (error) {
+                    console.error('Error in parallax scroll handler:', error);
+                }
             });
-        });
+        } catch (error) {
+            console.error('Error setting up parallax effects:', error);
+        }
     }
 };
 
 // Initialize all managers
 document.addEventListener('DOMContentLoaded', () => {
-    // Debug: Check if elements exist
-    console.log('Mobile Menu Toggle:', elements.mobileMenuToggle);
-    console.log('Mobile Menu:', elements.mobileMenu);
+    try {
+        // Debug: Check if elements exist
+        console.log('Mobile Menu Toggle:', elements.mobileMenuToggle);
+        console.log('Mobile Menu:', elements.mobileMenu);
 
-    themeManager.init();
-    languageManager.init();
-    modalManager.init();
-    notificationsManager.init();
-    cartManager.init();
-    navbarManager.init();
-    mobileMenuManager.init();
-    scrollManager.init();
-    animationManager.init();
+        themeManager.init();
+        languageManager.init();
+        modalManager.init();
+        notificationsManager.init();
+        cartManager.init();
+        navbarManager.init();
+        mobileMenuManager.init();
+        scrollManager.init();
+        animationManager.init();
 
-    // Initialize AOS (Animate On Scroll)
-    AOS.init({
-        duration: 800,
-        easing: 'ease-in-out',
-        once: true,
-        offset: 100,
-        delay: 0
-    });
+        // Initialize AOS (Animate On Scroll)
+        if (typeof AOS !== 'undefined') {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true,
+                offset: 100,
+                delay: 0
+            });
+        } else {
+            console.warn('AOS library not found');
+        }
+    } catch (error) {
+        console.error('Error during DOM initialization:', error);
+    }
 
     // Initialize Particles.js
-    if (typeof particlesJS !== 'undefined') {
-        particlesJS('particles-js', {
-            particles: {
-                number: {
-                    value: 80,
-                    density: {
-                        enable: true,
-                        value_area: 800
-                    }
-                },
-                color: {
-                    value: '#ffffff'
-                },
-                shape: {
-                    type: 'circle',
-                    stroke: {
-                        width: 0,
-                        color: '#000000'
-                    }
-                },
-                opacity: {
-                    value: 0.3,
-                    random: false,
-                    anim: {
-                        enable: false,
-                        speed: 1,
-                        opacity_min: 0.1,
-                        sync: false
-                    }
-                },
-                size: {
-                    value: 3,
-                    random: true,
-                    anim: {
-                        enable: false,
-                        speed: 40,
-                        size_min: 0.1,
-                        sync: false
-                    }
-                },
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: '#ffffff',
-                    opacity: 0.2,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 2,
-                    direction: 'none',
-                    random: false,
-                    straight: false,
-                    out_mode: 'out',
-                    bounce: false,
-                    attract: {
-                        enable: false,
-                        rotateX: 600,
-                        rotateY: 1200
-                    }
-                }
-            },
-            interactivity: {
-                detect_on: 'canvas',
-                events: {
-                    onhover: {
-                        enable: true,
-                        mode: 'repulse'
-                    },
-                    onclick: {
-                        enable: true,
-                        mode: 'push'
-                    },
-                    resize: true
-                },
-                modes: {
-                    grab: {
-                        distance: 400,
-                        line_linked: {
-                            opacity: 1
+    try {
+        if (typeof particlesJS !== 'undefined') {
+            particlesJS('particles-js', {
+                particles: {
+                    number: {
+                        value: 80,
+                        density: {
+                            enable: true,
+                            value_area: 800
                         }
                     },
-                    bubble: {
-                        distance: 400,
-                        size: 40,
-                        duration: 2,
-                        opacity: 8,
-                        speed: 3
+                    color: {
+                        value: '#ffffff'
                     },
-                    repulse: {
-                        distance: 200,
-                        duration: 0.4
+                    shape: {
+                        type: 'circle',
+                        stroke: {
+                            width: 0,
+                            color: '#000000'
+                        }
                     },
-                    push: {
-                        particles_nb: 4
+                    opacity: {
+                        value: 0.3,
+                        random: false,
+                        anim: {
+                            enable: false,
+                            speed: 1,
+                            opacity_min: 0.1,
+                            sync: false
+                        }
                     },
-                    remove: {
-                        particles_nb: 2
+                    size: {
+                        value: 3,
+                        random: true,
+                        anim: {
+                            enable: false,
+                            speed: 40,
+                            size_min: 0.1,
+                            sync: false
+                        }
+                    },
+                    line_linked: {
+                        enable: true,
+                        distance: 150,
+                        color: '#ffffff',
+                        opacity: 0.2,
+                        width: 1
+                    },
+                    move: {
+                        enable: true,
+                        speed: 2,
+                        direction: 'none',
+                        random: false,
+                        straight: false,
+                        out_mode: 'out',
+                        bounce: false,
+                        attract: {
+                            enable: false,
+                            rotateX: 600,
+                            rotateY: 1200
+                        }
                     }
-                }
-            },
-            retina_detect: true
-        });
+                },
+                interactivity: {
+                    detect_on: 'canvas',
+                    events: {
+                        onhover: {
+                            enable: true,
+                            mode: 'repulse'
+                        },
+                        onclick: {
+                            enable: true,
+                            mode: 'push'
+                        },
+                        resize: true
+                    },
+                    modes: {
+                        grab: {
+                            distance: 400,
+                            line_linked: {
+                                opacity: 1
+                            }
+                        },
+                        bubble: {
+                            distance: 400,
+                            size: 40,
+                            duration: 2,
+                            opacity: 8,
+                            speed: 3
+                        },
+                        repulse: {
+                            distance: 200,
+                            duration: 0.4
+                        },
+                        push: {
+                            particles_nb: 4
+                        },
+                        remove: {
+                            particles_nb: 2
+                        }
+                    }
+                },
+                retina_detect: true
+            });
+        } else {
+            console.warn('Particles.js library not found');
+        }
+    } catch (error) {
+        console.error('Error initializing Particles.js:', error);
     }
 
     // Add CSS for animations
-    const style = document.createElement('style');
-    style.textContent = `
-        .animate-spin {
-            animation: spin 1s linear infinite;
+    try {
+        const style = document.createElement('style');
+        style.textContent = `
+            .animate-spin {
+                animation: spin 1s linear infinite;
+            }
+            
+            @keyframes spin {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+            
+            .notification {
+                font-family: inherit;
+            }
+        `;
+        document.head.appendChild(style);
+    } catch (error) {
+        console.error('Error adding CSS animations:', error);
+    }
+});
+
+// Cleanup on page unload
+window.addEventListener('beforeunload', () => {
+    try {
+        if (window.animationManager && window.animationManager.cleanupTeacherBlob) {
+            window.animationManager.cleanupTeacherBlob();
         }
-        
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        if (window.animationManager && window.animationManager.cleanupInstructorName) {
+            window.animationManager.cleanupInstructorName();
         }
-        
-        .notification {
-            font-family: inherit;
-        }
-    `;
-    document.head.appendChild(style);
+    } catch (error) {
+        console.error('Error during page unload cleanup:', error);
+    }
 });
 
 // Export for debugging
-window.AppState = AppState;
-window.utils = utils;
+try {
+    window.AppState = AppState;
+    window.utils = utils;
+    window.animationManager = animationManager;
+} catch (error) {
+    console.error('Error exporting debugging objects:', error);
+}

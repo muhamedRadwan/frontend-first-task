@@ -10,7 +10,7 @@
     /* Primary Colors */
     --primary-color: #FF6600;
     --secondary-color: #E80009;
-    --primary-gradient: linear-gradient(135deg, #FF6600 0%, #E80009 100%);
+    --primary-gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
 
     /* Background Colors - Light Theme */
     --bg-primary: #ffffff;
@@ -73,6 +73,74 @@
     --hero-overlay: rgba(0, 0, 0, 0.75);
 }
 
+/* Dark Theme Teacher Blob */
+[data-theme="dark"] .teacher-blob {
+    filter: drop-shadow(0 15px 30px rgba(251, 54, 52, 0.5));
+}
+
+[data-theme="dark"] .teacher-blob #gradient stop:first-child {
+    stop-color: rgb(255, 100, 50);
+}
+
+[data-theme="dark"] .teacher-blob #gradient stop:last-child {
+    stop-color: rgb(255, 150, 30);
+}
+
+
+
+[data-theme="dark"] .instructor-name {
+    color: var(--primary-color);
+}
+
+[data-theme="dark"] .instructor-name::after {
+    background: var(--primary-gradient);
+}
+
+[data-theme="dark"] .instructor-name:hover {
+    color: var(--secondary-color);
+}
+
+[data-theme="dark"] .instructor-name:hover::after {
+    background: var(--primary-gradient);
+}
+
+/* Dark Mode for Hero Background SVGs */
+[data-theme="dark"] .floating-rock {
+    opacity: 0.8;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+}
+
+[data-theme="dark"] .crystal {
+    opacity: 0.9;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+[data-theme="dark"] .geological-wave {
+    opacity: 0.6;
+}
+
+/* Dark Mode for Handwritten Titles */
+[data-theme="dark"] .handwritten-title {
+    color: var(--primary-color);
+}
+
+[data-theme="dark"] .handwritten-title::after {
+    background: var(--primary-gradient);
+}
+
+[data-theme="dark"] .handwritten-title:hover {
+    color: var(--secondary-color);
+}
+
+[data-theme="dark"] .handwritten-title:hover::after {
+    background: var(--primary-gradient);
+}
+
+/* Dark Mode for Teacher Image */
+[data-theme="dark"] .teacher-image::after {
+    background: var(--primary-gradient);
+}
+
 [data-theme="dark"] .hero-section {
     background-color: #00000000;
 }
@@ -109,6 +177,12 @@ body {
 /* RTL Language Support */
 [dir="rtl"] body {
     font-family: 'Almarai', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* RTL Teacher Container */
+[dir="rtl"] .teacher-container {
+    direction: ltr;
+    /* Keep the visual direction consistent */
 }
 
 /* ===== NAVIGATION BAR ===== */
@@ -204,7 +278,7 @@ body {
 .toggle-thumb i {
     width: 16px;
     height: 16px;
-    color: #FFD700;
+    color: var(--primary-color);
     transition: var(--transition);
 }
 
@@ -1279,6 +1353,104 @@ body {
     background: url('./assets/images/rocks.png') center/cover no-repeat;
 }
 
+/* Hero Background SVGs */
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Floating Rocks */
+.floating-rock {
+    position: absolute;
+    opacity: 0.6;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+    will-change: transform;
+}
+
+.rock-1 {
+    top: 10%;
+    left: 5%;
+    width: 80px;
+    height: 80px;
+    animation: rockFloat1 8s ease-in-out infinite;
+}
+
+.rock-2 {
+    top: 60%;
+    right: 8%;
+    width: 60px;
+    height: 60px;
+    animation: rockFloat2 10s ease-in-out infinite;
+}
+
+.rock-3 {
+    top: 30%;
+    right: 15%;
+    width: 45px;
+    height: 45px;
+    animation: rockFloat3 12s ease-in-out infinite;
+}
+
+/* Sparkling Crystals */
+.crystal {
+    position: absolute;
+    opacity: 0.8;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    will-change: transform, opacity;
+}
+
+.crystal-1 {
+    top: 20%;
+    right: 20%;
+    width: 30px;
+    height: 30px;
+    animation: crystalSparkle1 6s ease-in-out infinite;
+}
+
+.crystal-2 {
+    top: 70%;
+    left: 10%;
+    width: 25px;
+    height: 25px;
+    animation: crystalSparkle2 8s ease-in-out infinite;
+}
+
+.crystal-3 {
+    top: 40%;
+    left: 20%;
+    width: 20px;
+    height: 20px;
+    animation: crystalSparkle3 7s ease-in-out infinite;
+}
+
+/* Geological Waves */
+.geological-wave {
+    position: absolute;
+    opacity: 0.4;
+    will-change: transform;
+}
+
+.wave-1 {
+    bottom: 20%;
+    left: 0;
+    width: 200px;
+    height: 50px;
+    animation: waveFlow1 15s linear infinite;
+}
+
+.wave-2 {
+    bottom: 10%;
+    right: 0;
+    width: 150px;
+    height: 40px;
+    animation: waveFlow2 18s linear infinite;
+}
+
 /* ===== FEATURES SECTION ===== */
 .features-section {
     padding: 4rem 0 5rem;
@@ -1313,7 +1485,7 @@ body {
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, rgba(255, 102, 0, .35), rgba(232, 0, 9, .15));
+    background: radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--primary-color) 35%, transparent), color-mix(in srgb, var(--secondary-color) 15%, transparent));
     animation: floatCircle 6s ease-in-out infinite;
 }
 
@@ -1324,12 +1496,12 @@ body {
     width: 115px;
     height: 115px;
     border-radius: 16px;
-    background: linear-gradient(135deg, rgba(255, 102, 0, .25), rgba(232, 0, 9, .1));
+    background: linear-gradient(135deg, color-mix(in srgb, var(--primary-color) 25%, transparent), color-mix(in srgb, var(--secondary-color) 10%, transparent));
     animation: rotateSquare 8s linear infinite;
 }
 
 [data-theme="dark"] .features-section::before {
-    background: radial-gradient(circle at 30% 30%, rgba(255, 102, 0, .15), rgba(232, 0, 9, .05));
+    background: radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--primary-color) 15%, transparent), color-mix(in srgb, var(--secondary-color) 5%, transparent));
 }
 
 [data-theme="dark"] .features-section {
@@ -1370,7 +1542,7 @@ body {
 }
 
 [data-theme="dark"] .classroom-card:nth-child(1) {
-    box-shadow: 0px 0px 15px rgba(255, 122, 24, 0.2);
+    box-shadow: 0px 0px 15px color-mix(in srgb, var(--primary-color) 20%, transparent);
 }
 
 [data-theme="dark"] .classroom-card:nth-child(2) {
@@ -1382,7 +1554,7 @@ body {
 }
 
 [data-theme="dark"] .classroom-card:hover {
-    box-shadow: 0px 0px 30px rgba(255, 122, 24, 0.3);
+    box-shadow: 0px 0px 30px color-mix(in srgb, var(--primary-color) 30%, transparent);
 }
 
 [data-theme="dark"] .classroom-card:nth-child(2):hover {
@@ -1402,19 +1574,19 @@ body {
 }
 
 [data-theme="dark"] .gradient-orange {
-    box-shadow: 0px 0px 60px rgba(255, 106, 0, 0.4);
+    box-shadow: 0px 0px 60px rgba(255, 58, 52, 0.4);
 }
 
 [data-theme="dark"] .classrooms-section::before {
-    background: radial-gradient(circle at 30% 30%, rgba(255, 102, 0, .15), rgba(232, 0, 9, .05));
+    background: radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--primary-color) 15%, transparent), color-mix(in srgb, var(--secondary-color) 5%, transparent));
 }
 
 [data-theme="dark"] .classrooms-section::after {
-    background: linear-gradient(135deg, rgba(255, 102, 0, .12), rgba(232, 0, 9, .05));
+    background: linear-gradient(135deg, color-mix(in srgb, var(--primary-color) 12%, transparent), color-mix(in srgb, var(--secondary-color) 5%, transparent));
 }
 
 [data-theme="dark"] .features-section::after {
-    background: linear-gradient(135deg, rgba(255, 102, 0, .12), rgba(232, 0, 9, .05));
+    background: linear-gradient(135deg, color-mix(in srgb, var(--primary-color) 12%, transparent), color-mix(in srgb, var(--secondary-color) 5%, transparent));
 }
 
 .section-title {
@@ -1431,14 +1603,14 @@ body {
 .scribble-underline span::after {
     content: '';
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
     bottom: -10px;
-    width: 600px;
-    height: 110px;
-    background: url('./assets/images/circle2.png') center/contain no-repeat;
-    padding: 15px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--primary-gradient);
+    border-radius: 2px;
+    animation: instructorNameUnderline 3s ease-in-out infinite;
+    transform-origin: left;
     opacity: 0.6;
 }
 
@@ -1552,7 +1724,7 @@ body {
 }
 
 .gradient-orange {
-    background: linear-gradient(135deg, #ff6a00, #ee0979);
+    background: var(--primary-gradient);
 }
 
 /* Reveal Animations (disabled on request) */
@@ -1582,9 +1754,8 @@ body {
     }
 
     .scribble-underline span::after {
-        width: 500px;
-        height: 90px;
-        padding: 20px;
+        height: 3px;
+        opacity: 0.6;
     }
 
     .features-container {
@@ -1723,7 +1894,7 @@ body {
     right: 5%;
     width: 80px;
     height: 80px;
-    background: linear-gradient(45deg, #ff7a18, #ff0000);
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
     border-radius: 12px;
     transform: rotate(45deg);
     z-index: 0;
@@ -1769,7 +1940,7 @@ body {
     height: 0;
     border-left: 25px solid transparent;
     border-right: 25px solid transparent;
-    border-bottom: 40px solid rgba(255, 122, 24, 0.6);
+    border-bottom: 40px solid color-mix(in srgb, var(--primary-color) 60%, transparent);
     z-index: 0;
     animation: rotateShape 22s linear infinite reverse;
 }
@@ -1820,6 +1991,126 @@ body {
     to {
         transform: rotate(0deg);
     }
+}
+
+/* ===== BLOB FLOAT (UP/DOWN) ANIMATION ===== */
+@keyframes blobFloat {
+    0% {
+        transform: translate(-50%, -50%) translateY(0);
+        filter: drop-shadow(0 15px 30px rgba(251, 54, 52, 0.30));
+    }
+
+    50% {
+        transform: translate(-50%, -50%) translateY(-12px);
+        filter: drop-shadow(0 22px 40px rgba(252, 130, 13, 0.40));
+    }
+
+    100% {
+        transform: translate(-50%, -50%) translateY(0);
+        filter: drop-shadow(0 15px 30px rgba(251, 54, 52, 0.30));
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .teacher-blob {
+        animation: none;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    .teacher-image {
+        animation: none;
+        transition: none;
+    }
+
+    .teacher-container:hover .teacher-image {
+        transform: none;
+    }
+
+    .teacher-container:active .teacher-image {
+        transform: none;
+    }
+
+    .instructor-name {
+        animation: none;
+        transform: none;
+    }
+
+    .instructor-name::after {
+        animation: none;
+        transform: none;
+    }
+
+    .instructor-name-text {
+        transform: none;
+    }
+
+    /* Hero Background SVGs - Reduced Motion */
+    .floating-rock {
+        animation: none;
+        transform: none;
+    }
+
+    .crystal {
+        animation: none;
+        transform: none;
+        opacity: 0.6;
+    }
+
+    .geological-wave {
+        animation: none;
+        transform: none;
+    }
+
+    /* Handwritten Titles - Reduced Motion */
+    .handwritten-title {
+        animation: none;
+        transform: none;
+    }
+
+    .handwritten-title::after {
+        animation: none;
+        transform: none;
+    }
+
+    /* Teacher Image - Reduced Motion */
+    .teacher-image::after {
+        animation: none;
+        transform: none;
+    }
+}
+
+/* Fallback for browsers that don't support clip-path */
+@supports not (clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%)) {
+    .teacher-image {
+        clip-path: none;
+        -webkit-clip-path: none;
+        -webkit-mask: none;
+        mask: none;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+}
+
+/* Simple up and down animation */
+.teacher-container:hover .teacher-image {
+    transform: translateY(-10px) scale(1.02);
+}
+
+.teacher-container:hover .teacher-image::after {
+    transform: scaleX(1.2);
+    opacity: 1;
+    height: 4px;
+}
+
+/* Teacher Container Active Effects */
+.teacher-container:active .teacher-image {
+    transform: translateY(-5px) scale(1.01);
+}
+
+.teacher-container:active .teacher-image::after {
+    transform: scaleX(1.1);
+    height: 5px;
 }
 
 .classrooms-container {
@@ -1948,7 +2239,7 @@ body {
     bottom: 0;
     border-radius: 20px;
     padding: 27px;
-    background: linear-gradient(45deg, #ff7a18, #ff0000);
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
@@ -2004,7 +2295,7 @@ body {
 
 /* Glow Effects */
 .classroom-card:nth-child(1) {
-    box-shadow: 0px 0px 20px rgba(255, 122, 24, 0.3);
+    box-shadow: 0px 0px 20px color-mix(in srgb, var(--primary-color) 30%, transparent);
 }
 
 .classroom-card:nth-child(2) {
@@ -2018,7 +2309,7 @@ body {
 /* Hover Effects */
 .classroom-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0px 0px 40px rgba(255, 122, 24, 0.5);
+    box-shadow: 0px 0px 40px color-mix(in srgb, var(--primary-color) 50%, transparent);
 }
 
 .classroom-card:nth-child(2):hover {
@@ -2095,7 +2386,7 @@ body {
 .card-btn {
     width: 75%;
     padding: 0.8rem 1.5rem;
-    background: linear-gradient(90deg, #ff7a18, #ff0000);
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
     color: white;
     border: none;
     border-radius: 12px;
@@ -2112,7 +2403,7 @@ body {
 
 .card-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(255, 122, 24, 0.4);
+    box-shadow: 0 8px 20px color-mix(in srgb, var(--primary-color) 40%, transparent);
 }
 
 .explore-all {
@@ -2154,11 +2445,11 @@ body {
 }
 
 .gradient-orange {
-    box-shadow: 0px 0px 60px rgba(255, 106, 0, 0.6);
+    box-shadow: 0px 0px 60px rgba(255, 58, 52, 0.6);
 }
 
 .gradient-orange:hover {
-    box-shadow: 0px 0px 80px rgba(255, 106, 0, 0.8);
+    box-shadow: 0px 0px 80px rgba(255, 58, 52, 0.8);
 }
 
 /* ===== DECORATIVE SHAPES BACKGROUND ===== */
@@ -2176,7 +2467,7 @@ body {
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, rgba(255, 102, 0, .25), rgba(232, 0, 9, .1));
+    background: radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--primary-color) 25%, transparent), color-mix(in srgb, var(--secondary-color) 10%, transparent));
     animation: floatCircle 8s ease-in-out infinite;
 }
 
@@ -2186,7 +2477,7 @@ body {
     width: 100px;
     height: 100px;
     border-radius: 12px;
-    background: linear-gradient(135deg, rgba(255, 102, 0, .2), rgba(232, 0, 9, .08));
+    background: linear-gradient(135deg, color-mix(in srgb, var(--primary-color) 20%, transparent), color-mix(in srgb, var(--secondary-color) 8%, transparent));
     animation: rotateSquare 10s linear infinite;
 }
 
@@ -2323,13 +2614,365 @@ body {
 }
 
 .instructor-name {
-    color: var(--primary-color);
     position: relative;
     display: inline-block;
     margin-left: 0.5rem;
-    padding: 2rem;
-    background: url('./assets/images/circle.png') center/contain no-repeat;
+    /* padding: 0.2rem 0.5rem; */
+    font-family: 'Kalam', cursive;
+    font-weight: 700;
+    font-size: 1.3em;
+    color: var(--primary-color);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    animation: instructorNameFloat 4s ease-in-out infinite;
+    transition: var(--transition);
+    will-change: transform;
 }
+
+.instructor-name::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--primary-gradient);
+    border-radius: 2px;
+    animation: instructorNameUnderline 3s ease-in-out infinite;
+    transform-origin: left;
+}
+
+.instructor-name-text {
+    position: relative;
+    z-index: 1;
+    color: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    transition: var(--transition);
+    will-change: transform;
+}
+
+/* Handwritten Titles */
+.handwritten-title {
+    position: relative;
+    display: inline-block;
+    margin-left: 0.5rem;
+    font-family: 'Kalam', cursive;
+    font-weight: 700;
+    font-size: 1.3em;
+    color: var(--primary-color);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    animation: instructorNameFloat 4s ease-in-out infinite;
+    transition: var(--transition);
+    will-change: transform;
+}
+
+.handwritten-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--primary-gradient);
+    border-radius: 2px;
+    animation: instructorNameUnderline 3s ease-in-out infinite;
+    transform-origin: left;
+}
+
+/* Instructor Name Animation */
+@keyframes instructorNameFloat {
+    0% {
+        transform: translateY(0) scale(1) rotate(0deg);
+    }
+
+    25% {
+        transform: translateY(-1px) scale(1.01) rotate(0.5deg);
+    }
+
+    50% {
+        transform: translateY(-2px) scale(1.02) rotate(0deg);
+    }
+
+    75% {
+        transform: translateY(-1px) scale(1.01) rotate(-0.5deg);
+    }
+
+    100% {
+        transform: translateY(0) scale(1) rotate(0deg);
+    }
+}
+
+@keyframes instructorNameUnderline {
+    0% {
+        transform: scaleX(0.8);
+        opacity: 0.7;
+    }
+
+    25% {
+        transform: scaleX(0.9);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: scaleX(1.1);
+        opacity: 1;
+    }
+
+    75% {
+        transform: scaleX(0.95);
+        opacity: 0.9;
+    }
+
+    100% {
+        transform: scaleX(0.8);
+        opacity: 0.7;
+    }
+}
+
+/* Hero Background Animations */
+@keyframes rockFloat1 {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(1);
+    }
+
+    25% {
+        transform: translateY(-10px) rotate(5deg) scale(1.05);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(0deg) scale(1.1);
+    }
+
+    75% {
+        transform: translateY(-10px) rotate(-5deg) scale(1.05);
+    }
+
+    100% {
+        transform: translateY(0) rotate(0deg) scale(1);
+    }
+}
+
+@keyframes rockFloat2 {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(1);
+    }
+
+    33% {
+        transform: translateY(-15px) rotate(3deg) scale(1.08);
+    }
+
+    66% {
+        transform: translateY(-25px) rotate(-3deg) scale(1.12);
+    }
+
+    100% {
+        transform: translateY(0) rotate(0deg) scale(1);
+    }
+}
+
+@keyframes rockFloat3 {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(1);
+    }
+
+    20% {
+        transform: translateY(-8px) rotate(2deg) scale(1.03);
+    }
+
+    40% {
+        transform: translateY(-16px) rotate(0deg) scale(1.06);
+    }
+
+    60% {
+        transform: translateY(-24px) rotate(-2deg) scale(1.09);
+    }
+
+    80% {
+        transform: translateY(-16px) rotate(1deg) scale(1.06);
+    }
+
+    100% {
+        transform: translateY(0) rotate(0deg) scale(1);
+    }
+}
+
+@keyframes crystalSparkle1 {
+    0% {
+        transform: scale(1) rotate(0deg);
+        opacity: 0.8;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    }
+
+    25% {
+        transform: scale(1.1) rotate(90deg);
+        opacity: 1;
+        filter: drop-shadow(0 4px 8px rgba(255, 102, 0, 0.5));
+    }
+
+    50% {
+        transform: scale(1.2) rotate(180deg);
+        opacity: 0.9;
+        filter: drop-shadow(0 6px 12px rgba(255, 165, 0, 0.6));
+    }
+
+    75% {
+        transform: scale(1.1) rotate(270deg);
+        opacity: 1;
+        filter: drop-shadow(0 4px 8px rgba(255, 140, 0, 0.5));
+    }
+
+    100% {
+        transform: scale(1) rotate(360deg);
+        opacity: 0.8;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    }
+}
+
+@keyframes crystalSparkle2 {
+    0% {
+        transform: scale(1) rotate(0deg);
+        opacity: 0.7;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    }
+
+    30% {
+        transform: scale(1.15) rotate(120deg);
+        opacity: 1;
+        filter: drop-shadow(0 5px 10px rgba(0, 206, 209, 0.6));
+    }
+
+    60% {
+        transform: scale(1.25) rotate(240deg);
+        opacity: 0.8;
+        filter: drop-shadow(0 8px 16px rgba(32, 178, 170, 0.7));
+    }
+
+    100% {
+        transform: scale(1) rotate(360deg);
+        opacity: 0.7;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    }
+}
+
+@keyframes crystalSparkle3 {
+    0% {
+        transform: scale(1) rotate(0deg);
+        opacity: 0.6;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    }
+
+    40% {
+        transform: scale(1.2) rotate(144deg);
+        opacity: 1;
+        filter: drop-shadow(0 6px 12px rgba(255, 105, 180, 0.7));
+    }
+
+    80% {
+        transform: scale(1.3) rotate(288deg);
+        opacity: 0.9;
+        filter: drop-shadow(0 10px 20px rgba(255, 20, 147, 0.8));
+    }
+
+    100% {
+        transform: scale(1) rotate(360deg);
+        opacity: 0.6;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    }
+}
+
+@keyframes waveFlow1 {
+    0% {
+        transform: translateX(-100%) scaleX(1);
+    }
+
+    50% {
+        transform: translateX(0%) scaleX(1.1);
+    }
+
+    100% {
+        transform: translateX(100%) scaleX(1);
+    }
+}
+
+@keyframes waveFlow2 {
+    0% {
+        transform: translateX(100%) scaleX(1);
+    }
+
+    50% {
+        transform: translateX(0%) scaleX(0.9);
+    }
+
+    100% {
+        transform: translateX(-100%) scaleX(1);
+    }
+}
+
+
+/* Instructor Name Hover Effects */
+.instructor-name:hover {
+    animation-play-state: paused;
+    transform: translateY(-2px) scale(1.05) rotate(1deg);
+    color: var(--primary-color);
+}
+
+.instructor-name:hover::after {
+    transform: scaleX(1.2);
+    opacity: 1;
+    height: 4px;
+}
+
+.instructor-name:hover .instructor-name-text {
+    transform: translateY(-1px) scale(1.02);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.instructor-name:active {
+    transform: translateY(-1px) scale(1.03) rotate(0.5deg);
+    color: var(--secondary-color);
+}
+
+.instructor-name:active::after {
+    transform: scaleX(1.1);
+    height: 5px;
+}
+
+.instructor-name:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+    border-radius: 5px;
+}
+
+/* Handwritten Title Hover Effects */
+.handwritten-title:hover {
+    animation-play-state: paused;
+    transform: translateY(-2px) scale(1.05) rotate(1deg);
+    color: var(--primary-color);
+}
+
+.handwritten-title:hover::after {
+    transform: scaleX(1.2);
+    opacity: 1;
+    height: 4px;
+}
+
+.handwritten-title:active {
+    transform: translateY(-1px) scale(1.03) rotate(0.5deg);
+    color: var(--secondary-color);
+}
+
+.handwritten-title:active::after {
+    transform: scaleX(1.1);
+    height: 5px;
+}
+
+.handwritten-title:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+    border-radius: 5px;
+}
+
 
 /* Hero Description */
 .hero-description {
@@ -2446,13 +3089,89 @@ body {
     position: relative;
     z-index: 2;
     animation: teacherFloat 6s ease-in-out infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Teacher Blob SVG Background */
+.teacher-blob {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    z-index: 1;
+    animation: blobFloat 5s ease-in-out infinite;
+    filter: drop-shadow(0 15px 30px rgba(251, 54, 52, 0.3));
+    will-change: transform, filter;
+    transform-origin: center center;
 }
 
 .teacher-image {
+    position: relative;
     width: 400px;
     height: 500px;
     object-fit: contain;
-    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+    object-position: center;
+    z-index: 2;
+    /* filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3)); */
+    animation: teacherFloat 6s ease-in-out infinite;
+    transition: var(--transition);
+    will-change: transform, filter;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 80%,
+            96% 82%, 92% 84%, 88% 85%, 84% 86%, 80% 87%,
+            72% 88%, 64% 89%, 56% 90%, 48% 90.5%, 40% 90%,
+            32% 89%, 24% 88%, 16% 86.5%, 10% 85%, 6% 83%, 0% 80%);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M0,0 H100 V80 C96,82 92,84 88,85 C84,86 80,87 72,88 C64,89 56,90 48,90.5 C40,90 32,89 24,88 C16,86.5 10,85 6,83 C4,82 2,81 0,80 Z' fill='white'/%3E%3Crect x='0' y='0' width='100' height='80' fill='white'/%3E%3Crect x='0' y='0' width='100' height='100' fill='none'/%3E%3C/svg%3E") center/contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M0,0 H100 V80 C96,82 92,84 88,85 C84,86 80,87 72,88 C64,89 56,90 48,90.5 C40,90 32,89 24,88 C16,86.5 10,85 6,83 C4,82 2,81 0,80 Z' fill='white'/%3E%3Crect x='0' y='0' width='100' height='80' fill='white'/%3E%3Crect x='0' y='0' width='100' height='100' fill='none'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+
+.teacher-image::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--primary-gradient);
+    border-radius: 2px;
+    animation: instructorNameUnderline 3s ease-in-out infinite;
+    transform-origin: left;
+}
+
+/* Teacher Container Hover Effects */
+.teacher-container:hover .teacher-image {
+    transform: translateY(-10px) scale(1.02);
+    /* filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.4)); */
+}
+
+/* Teacher Container Active Effects */
+.teacher-container:active .teacher-image {
+    transform: translateY(-5px) scale(1.01);
+    /* filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.35)); */
+}
+
+.teacher-container:hover .teacher-blob {
+    animation-play-state: paused;
+}
+
+/* Teacher Container Click Effect */
+.teacher-container:active .teacher-image {
+    transform: translateY(-5px) scale(0.98);
+    transition: var(--transition-fast);
+}
+
+/* Teacher Container Focus Effect */
+/* .teacher-container:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 4px;
+    border-radius: var(--border-radius);
+} */
+
+.teacher-container:focus .teacher-blob {
+    filter: drop-shadow(0 20px 40px rgba(251, 54, 52, 0.6));
 }
 
 /* Floating Icons */
@@ -2550,6 +3269,11 @@ body {
         height: 350px;
     }
 
+    .teacher-blob {
+        width: 320px;
+        height: 320px;
+    }
+
     .gradient-blob {
         width: 380px;
         height: 380px;
@@ -2562,8 +3286,221 @@ body {
     }
 
     .instructor-name {
-        font-size: 1.8rem;
-        padding: 0.4rem 1.2rem;
+        padding: 0.3rem 0.8rem;
+        font-size: 1.2em;
+    }
+
+    .instructor-name-text {
+        font-size: 1.2em;
+    }
+
+    /* Hero Background SVGs - Tablet */
+    .floating-rock {
+        opacity: 0.5;
+    }
+
+    .rock-1 {
+        width: 60px;
+        height: 60px;
+    }
+
+    .rock-2 {
+        width: 45px;
+        height: 45px;
+    }
+
+    .rock-3 {
+        width: 35px;
+        height: 35px;
+    }
+
+    .crystal {
+        opacity: 0.7;
+    }
+
+    .crystal-1 {
+        width: 25px;
+        height: 25px;
+    }
+
+    .crystal-2 {
+        width: 20px;
+        height: 20px;
+    }
+
+    .crystal-3 {
+        width: 15px;
+        height: 15px;
+    }
+
+    .geological-wave {
+        opacity: 0.3;
+    }
+
+    .wave-1 {
+        width: 150px;
+        height: 40px;
+    }
+
+    .wave-2 {
+        width: 120px;
+        height: 30px;
+    }
+
+    /* Handwritten Titles - Tablet */
+    .handwritten-title {
+        font-size: 1.1em;
+    }
+
+
+
+    .instructor-name:hover .instructor-name-text {
+        transform: translateY(-1px) scale(1.02);
+    }
+
+    .instructor-name:active .instructor-name-bg {
+        transform: translateY(-1px) scale(1.03) rotate(1deg);
+    }
+
+    .instructor-name:active .instructor-name-text {
+        transform: translateY(-0.5px) scale(1.01);
+    }
+
+    .instructor-name:focus .instructor-name-bg {
+        transform: translateY(-1.5px) scale(1.04) rotate(1.5deg);
+    }
+
+    .instructor-name:focus .instructor-name-text {
+        transform: translateY(-0.8px) scale(1.015);
+    }
+
+    .instructor-name:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 15px;
+    }
+
+    .instructor-name:focus-visible {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 15px;
+    }
+
+    .instructor-name:focus-within {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 15px;
+    }
+
+    .instructor-name:focus-visible:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 15px;
+    }
+
+    .instructor-name:focus-visible:focus-within {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 15px;
+    }
+
+    .instructor-name:focus-visible:focus:focus-within {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 15px;
+    }
+
+    .instructor-name:focus-visible:focus:focus-within:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 15px;
+    }
+
+    .instructor-name:focus-visible:focus:focus-within:focus:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 15px;
+    }
+
+    .instructor-name:focus-visible:focus:focus-within:focus:focus:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 15px;
+    }
+
+    .instructor-name:focus-visible:focus:focus-within:focus:focus:focus:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 15px;
+    }
+
+    .instructor-name:focus-visible:focus:focus-within:focus:focus:focus:focus:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 15px;
+    }
+
+    .instructor-name:focus-visible:focus:focus-within:focus:focus:focus:focus:focus:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 15px;
+    }
+
+    .instructor-name:focus-visible:focus:focus-within:focus:focus:focus:focus:focus:focus:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 15px;
+    }
+
+    .instructor-name:focus-visible:focus:focus-within:focus:focus:focus:focus:focus:focus:focus:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 15px;
+    }
+
+    .instructor-name:focus-visible:focus:focus-within:focus:focus:focus:focus:focus:focus:focus:focus:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 15px;
+    }
+
+    .instructor-name:focus-visible:focus:focus-within:focus:focus:focus:focus:focus:focus:focus:focus:focus:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 15px;
+    }
+
+
+    .instructor-name:hover .instructor-name-text {
+        transform: translateY(-1px) scale(1.02);
+    }
+
+    .instructor-name:active .instructor-name-bg {
+        transform: translateY(-1px) scale(1.03) rotate(1deg);
+    }
+
+    .instructor-name:active .instructor-name-text {
+        transform: translateY(-0.5px) scale(1.01);
+    }
+
+    .instructor-name:focus .instructor-name-bg {
+        transform: translateY(-1.5px) scale(1.04) rotate(1.5deg);
+    }
+
+    .instructor-name:focus .instructor-name-text {
+        transform: translateY(-0.8px) scale(1.015);
+    }
+
+    .instructor-name:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 15px;
+    }
+
+    .instructor-name:focus-visible {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 15px;
     }
 
     .instructor-intro {
@@ -2599,6 +3536,78 @@ body {
         height: 200px;
     }
 
+    /* Hero Background SVGs - Mobile */
+    .floating-rock {
+        opacity: 0.4;
+    }
+
+    .rock-1 {
+        width: 50px;
+        height: 50px;
+        top: 15%;
+        left: 3%;
+    }
+
+    .rock-2 {
+        width: 40px;
+        height: 40px;
+        top: 65%;
+        right: 5%;
+    }
+
+    .rock-3 {
+        width: 30px;
+        height: 30px;
+        top: 35%;
+        right: 10%;
+    }
+
+    .crystal {
+        opacity: 0.6;
+    }
+
+    .crystal-1 {
+        width: 20px;
+        height: 20px;
+        top: 25%;
+        right: 15%;
+    }
+
+    .crystal-2 {
+        width: 18px;
+        height: 18px;
+        top: 75%;
+        left: 8%;
+    }
+
+    .crystal-3 {
+        width: 15px;
+        height: 15px;
+        top: 45%;
+        left: 15%;
+    }
+
+    .geological-wave {
+        opacity: 0.2;
+    }
+
+    .wave-1 {
+        width: 120px;
+        height: 30px;
+        bottom: 25%;
+    }
+
+    .wave-2 {
+        width: 100px;
+        height: 25px;
+        bottom: 15%;
+    }
+
+    /* Handwritten Titles - Mobile */
+    .handwritten-title {
+        font-size: 1em;
+    }
+
     #hero-3d-sphere {
         width: 200px;
         height: 200px;
@@ -2620,6 +3629,11 @@ body {
     .teacher-image {
         width: 250px;
         height: 312px;
+    }
+
+    .teacher-blob {
+        width: 280px;
+        height: 280px;
     }
 
     .gradient-blob {
@@ -2660,8 +3674,8 @@ body {
     }
 
     .scribble-underline span::after {
-        width: 400px;
-        height: 70px;
+        height: 3px;
+        opacity: 0.6;
     }
 
     .features-container {
@@ -2734,7 +3748,7 @@ body {
     .classrooms-section .rotating-triangle {
         border-left: 20px solid transparent;
         border-right: 20px solid transparent;
-        border-bottom: 32px solid rgba(255, 122, 24, 0.6);
+        border-bottom: 32px solid color-mix(in srgb, var(--primary-color) 60%, transparent);
         top: 25%;
         left: 8%;
     }
@@ -2868,6 +3882,11 @@ body {
         height: 250px;
     }
 
+    .teacher-blob {
+        width: 220px;
+        height: 220px;
+    }
+
     .gradient-blob {
         width: 250px;
         height: 250px;
@@ -2880,6 +3899,163 @@ body {
     .instructor-name {
         padding: 0.4rem 0.8rem;
         font-size: 0.9rem;
+        min-width: 70px;
+        min-height: 25px;
+    }
+
+    .instructor-name-text {
+        font-size: 0.9rem;
+    }
+
+
+
+    .instructor-name:hover .instructor-name-text {
+        transform: translateY(-1px) scale(1.02);
+    }
+
+    .instructor-name:active .instructor-name-bg {
+        transform: translateY(-1px) scale(1.03) rotate(1deg);
+    }
+
+    .instructor-name:active .instructor-name-text {
+        transform: translateY(-0.5px) scale(1.01);
+    }
+
+    .instructor-name:focus .instructor-name-bg {
+        transform: translateY(-1.5px) scale(1.04) rotate(1.5deg);
+    }
+
+    .instructor-name:focus .instructor-name-text {
+        transform: translateY(-0.8px) scale(1.015);
+    }
+
+    .instructor-name:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 15px;
+    }
+
+    .instructor-name:focus-visible {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 15px;
+    }
+
+    .instructor-name:focus-within {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 15px;
+    }
+
+    .instructor-name:focus-visible:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 15px;
+    }
+
+    .instructor-name:focus-visible:focus-within {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 15px;
+    }
+
+    .instructor-name:focus-visible:focus:focus-within {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 15px;
+    }
+
+    .instructor-name:focus-visible:focus:focus-within:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 15px;
+    }
+
+    .instructor-name:focus-visible:focus:focus-within:focus:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 15px;
+    }
+
+    .instructor-name:focus-visible:focus:focus-within:focus:focus:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 15px;
+    }
+
+    .instructor-name:focus-visible:focus:focus-within:focus:focus:focus:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 15px;
+    }
+
+    .instructor-name:focus-visible:focus:focus-within:focus:focus:focus:focus:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 15px;
+    }
+
+    .instructor-name:focus-visible:focus:focus-within:focus:focus:focus:focus:focus:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 15px;
+    }
+
+    .instructor-name:focus-visible:focus:focus-within:focus:focus:focus:focus:focus:focus:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 15px;
+    }
+
+    .instructor-name:focus-visible:focus:focus-within:focus:focus:focus:focus:focus:focus:focus:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 15px;
+    }
+
+    .instructor-name:focus-visible:focus:focus-within:focus:focus:focus:focus:focus:focus:focus:focus:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 15px;
+    }
+
+    .instructor-name:focus-visible:focus:focus-within:focus:focus:focus:focus:focus:focus:focus:focus:focus:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 15px;
+    }
+
+
+    .instructor-name:hover .instructor-name-text {
+        transform: translateY(-1px) scale(1.02);
+    }
+
+    .instructor-name:active .instructor-name-bg {
+        transform: translateY(-1px) scale(1.03) rotate(1deg);
+    }
+
+    .instructor-name:active .instructor-name-text {
+        transform: translateY(-0.5px) scale(1.01);
+    }
+
+    .instructor-name:focus .instructor-name-bg {
+        transform: translateY(-1.5px) scale(1.04) rotate(1.5deg);
+    }
+
+    .instructor-name:focus .instructor-name-text {
+        transform: translateY(-0.8px) scale(1.015);
+    }
+
+    .instructor-name:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 15px;
+    }
+
+    .instructor-name:focus-visible {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+        border-radius: 15px;
     }
 
     /* ===== RTL RESPONSIVE FOR HERO - EXTRA SMALL ===== */
@@ -2907,8 +4083,8 @@ body {
     }
 
     .scribble-underline span::after {
-        width: 300px;
-        height: 50px;
+        height: 3px;
+        opacity: 0.6;
     }
 
     .features-container {
@@ -3311,7 +4487,7 @@ body {
     .classrooms-section .rotating-triangle {
         border-left: 22px solid transparent;
         border-right: 22px solid transparent;
-        border-bottom: 36px solid rgba(255, 122, 24, 0.6);
+        border-bottom: 36px solid color-mix(in srgb, var(--primary-color) 60%, transparent);
         top: 28%;
         left: 10%;
     }
@@ -3631,10 +4807,18 @@ body {
     order: 1;
 }
 
-[dir="rtl"] .instructor-name::before {
-    left: auto;
-    right: -10px;
+[dir="rtl"] .instructor-name {
+    margin-left: 0;
+    margin-right: 0.5rem;
+    font-family: 'Almarai', cursive;
 }
+
+[dir="rtl"] .handwritten-title {
+    margin-left: 0;
+    margin-right: 0.5rem;
+    font-family: 'Almarai', cursive;
+}
+
 
 [dir="rtl"] .hero-btn {
     flex-direction: row-reverse;
@@ -3896,7 +5080,7 @@ html {
     width: 80px;
     height: 80px;
     margin: 0 auto 2rem;
-    background: linear-gradient(135deg, #E94E1B, #F46E04);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     border-radius: 20px;
     display: flex;
     align-items: center;
@@ -3915,7 +5099,7 @@ html {
     position: absolute;
     inset: -18px;
     border-radius: 28px;
-    background: conic-gradient(from 0deg, #E94E1B, #F46E04, #E80009, #E94E1B);
+    background: conic-gradient(from 0deg, var(--primary-color), var(--secondary-color), var(--secondary-color), var(--primary-color));
     filter: blur(6px);
     z-index: -1;
     animation: spinGradient 6s linear infinite;
@@ -3950,7 +5134,7 @@ html {
 }
 
 .quote-btn {
-    background: linear-gradient(135deg, #E94E1B, #F46E04);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: #FFFFFF;
     border: none;
     padding: 1rem 2rem;
@@ -4488,14 +5672,14 @@ html {
     --download-bg: linear-gradient(135deg, #fff7ef 0%, #ffe9da 50%, #ffe1d6 100%);
     --download-text: #1a1a1a;
     --download-desc: #333;
-    --download-accent: #E94E1B;
+    --download-accent: var(--primary-color);
     --store-bg: #fff;
     --store-text: #1a1a1a;
     --store-border: #e0e0e0;
     --phone-bg: #000;
-    --phone-screen: linear-gradient(135deg, #E94E1B, #F46E04);
-    --badge-border: #E94E1B;
-    --badge-bg: linear-gradient(135deg, #E94E1B, #F46E04);
+    --phone-screen: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    --badge-border: var(--primary-color);
+    --badge-bg: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
 }
 
 /* Dark Mode */
@@ -4503,14 +5687,14 @@ html {
     --download-bg: linear-gradient(135deg, #24324A 0%, #060F1F 100%);
     --download-text: #ffffff;
     --download-desc: #cccccc;
-    --download-accent: #E94E1B;
+    --download-accent: var(--primary-color);
     --store-bg: #333;
     --store-text: #ffffff;
     --store-border: #555;
     --phone-bg: #000;
-    --phone-screen: linear-gradient(135deg, #E94E1B, #F46E04);
-    --badge-border: #E94E1B;
-    --badge-bg: linear-gradient(135deg, #E94E1B, #F46E04);
+    --phone-screen: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    --badge-border: var(--primary-color);
+    --badge-bg: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
 }
 
 .download-container {
@@ -4771,10 +5955,10 @@ html {
     --footer-bg: #212B36;
     --footer-text: #ffffff;
     --footer-desc: #cccccc;
-    --footer-accent: #E94E1B;
+    --footer-accent: var(--primary-color);
     --footer-border: #3a4a5a;
     --social-bg: #2d3a47;
-    --social-hover: #E94E1B;
+    --social-hover: var(--primary-color);
     --copyright-bg: #1a2329;
     --copyright-border: #3a4a5a;
 }
@@ -4784,10 +5968,10 @@ html {
     --footer-bg: #0a0f14;
     --footer-text: #ffffff;
     --footer-desc: #cccccc;
-    --footer-accent: #E94E1B;
+    --footer-accent: var(--primary-color);
     --footer-border: #1a2329;
     --social-bg: #1a2329;
-    --social-hover: #E94E1B;
+    --social-hover: var(--primary-color);
     --copyright-bg: #060a0e;
     --copyright-border: #1a2329;
 }
@@ -4813,7 +5997,7 @@ html {
 .footer-title {
     font-size: 2rem;
     font-weight: 800;
-    background: linear-gradient(135deg, #E94E1B 0%, #F46E04 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -5089,11 +6273,11 @@ html {
 }
 
 .app-download-title span:last-child {
-    color: #E94E1B;
+    color: var(--primary-color);
 }
 
 .app-download-title .download-icon {
-    color: #E94E1B;
+    color: var(--primary-color);
     width: 2rem;
     height: 2rem;
 }
@@ -5181,7 +6365,7 @@ html {
 .huawei-logo {
     width: 24px;
     height: 24px;
-    background: #ff0000;
+    background: var(--secondary-color);
     border-radius: 50%;
     position: relative;
 }
@@ -5234,7 +6418,7 @@ html {
 .phone-screen {
     width: 100%;
     height: 100%;
-    background: #E94E1B;
+    background: var(--primary-color);
     border-radius: 40px;
     position: relative;
     overflow: hidden;
@@ -5326,7 +6510,7 @@ html {
 .orange-c {
     width: 25px;
     height: 25px;
-    background: #E94E1B;
+    background: var(--primary-color);
     border-radius: 50%;
     margin-bottom: 8px;
     position: relative;
@@ -5350,7 +6534,7 @@ html {
     right: 15%;
     width: 90px;
     height: 90px;
-    background: linear-gradient(135deg, #E94E1B, #F46E04);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -5370,7 +6554,7 @@ html {
     width: 25px;
     height: 25px;
     background: transparent;
-    border: 3px solid #E94E1B;
+    border: 3px solid var(--primary-color);
     clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
 }
 
@@ -5392,7 +6576,7 @@ html {
     right: 30%;
     width: 35px;
     height: 35px;
-    border: 3px solid #E94E1B;
+    border: 3px solid var(--primary-color);
     border-radius: 10px;
     animation: float 7s ease-in-out infinite reverse;
 }
@@ -5721,7 +6905,7 @@ html {
     right: 2rem;
     width: 56px;
     height: 56px;
-    background: linear-gradient(135deg, #E94E1B 0%, #F46E04 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     border: none;
     border-radius: 50%;
     color: white;
@@ -5747,7 +6931,7 @@ html {
 .back-to-top:hover {
     transform: translateY(-5px) scale(1.1);
     box-shadow: 0 12px 35px rgba(233, 78, 27, 0.4);
-    background: linear-gradient(135deg, #F46E04 0%, #E94E1B 100%);
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
 }
 
 .back-to-top:active {

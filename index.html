@@ -7,7 +7,9 @@
     <title>VClasses - Learning Management System</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Kalam:wght@300;400;700&display=swap"
+        rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
@@ -393,6 +395,103 @@
     <main class="main-content">
         <!-- Hero Section -->
         <section class="hero-section">
+            <!-- Background SVGs -->
+            <div class="hero-background">
+                <!-- Floating Rocks -->
+                <svg class="floating-rock rock-1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="rockGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color: #8B4513;" />
+                            <stop offset="50%" style="stop-color: #A0522D;" />
+                            <stop offset="100%" style="stop-color: #654321;" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M20,20 Q10,30 20,40 Q30,50 40,40 Q50,30 40,20 Q30,10 20,20 Z" fill="url(#rockGradient1)" />
+                    <path d="M25,25 Q15,35 25,45 Q35,55 45,45 Q55,35 45,25 Q35,15 25,25 Z" fill="url(#rockGradient1)"
+                        opacity="0.7" />
+                </svg>
+
+                <svg class="floating-rock rock-2" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="rockGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color: #696969;" />
+                            <stop offset="50%" style="stop-color: #808080;" />
+                            <stop offset="100%" style="stop-color: #2F4F4F;" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M15,15 Q5,25 15,35 Q25,45 35,35 Q45,25 35,15 Q25,5 15,15 Z" fill="url(#rockGradient2)" />
+                </svg>
+
+                <svg class="floating-rock rock-3" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="rockGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color: #CD853F;" />
+                            <stop offset="50%" style="stop-color: #DEB887;" />
+                            <stop offset="100%" style="stop-color: #8B7355;" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M10,10 Q0,20 10,30 Q20,40 30,30 Q40,20 30,10 Q20,0 10,10 Z" fill="url(#rockGradient3)" />
+                </svg>
+
+                <!-- Sparkling Crystals -->
+                <svg class="crystal crystal-1" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="crystalGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color: #FF6600;" />
+                            <stop offset="50%" style="stop-color: #E80009;" />
+                            <stop offset="100%" style="stop-color: #FF6600;" />
+                        </linearGradient>
+                    </defs>
+                    <polygon points="20,5 30,15 25,25 15,25 10,15" fill="url(#crystalGradient1)" />
+                    <polygon points="20,35 30,25 25,15 15,15 10,25" fill="url(#crystalGradient1)" opacity="0.6" />
+                </svg>
+
+                <svg class="crystal crystal-2" viewBox="0 0 35 35" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="crystalGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color: #00CED1;" />
+                            <stop offset="50%" style="stop-color: #20B2AA;" />
+                            <stop offset="100%" style="stop-color: #008B8B;" />
+                        </linearGradient>
+                    </defs>
+                    <polygon points="17.5,3 28,13 23,23 13,23 8,13" fill="url(#crystalGradient2)" />
+                </svg>
+
+                <svg class="crystal crystal-3" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="crystalGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color: #FF69B4;" />
+                            <stop offset="50%" style="stop-color: #FF1493;" />
+                            <stop offset="100%" style="stop-color: #DC143C;" />
+                        </linearGradient>
+                    </defs>
+                    <polygon points="15,2 25,12 20,22 10,22 5,12" fill="url(#crystalGradient3)" />
+                </svg>
+
+                <!-- Geological Waves -->
+                <svg class="geological-wave wave-1" viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="waveGradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color: rgba(139, 69, 19, 0.3);" />
+                            <stop offset="50%" style="stop-color: rgba(160, 82, 45, 0.4);" />
+                            <stop offset="100%" style="stop-color: rgba(101, 67, 33, 0.3);" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M0,25 Q50,10 100,25 T200,25 L200,50 L0,50 Z" fill="url(#waveGradient1)" />
+                </svg>
+
+                <svg class="geological-wave wave-2" viewBox="0 0 150 40" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="waveGradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color: rgba(105, 105, 105, 0.2);" />
+                            <stop offset="50%" style="stop-color: rgba(128, 128, 128, 0.3);" />
+                            <stop offset="100%" style="stop-color: rgba(47, 79, 79, 0.2);" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M0,20 Q37.5,5 75,20 T150,20 L150,40 L0,40 Z" fill="url(#waveGradient2)" />
+                </svg>
+            </div>
+
             <div class="hero-container">
                 <!-- Left Content -->
                 <div class="hero-content">
@@ -410,7 +509,9 @@
                             <br>
                             <span class="instructor-intro">
                                 <span data-en="With Mr." data-ar="مع مستر">With Mr.</span>
-                                <span class="instructor-name" data-en="Islam" data-ar="إسلام">Islam</span>
+                                <span class="instructor-name" data-en="Islam" data-ar="إسلام">
+                                    <span class="instructor-name-text">Islam</span>
+                                </span>
                             </span>
                         </h1>
 
@@ -433,13 +534,27 @@
                 <!-- Right Content -->
                 <div class="hero-visual">
                     <!-- 3D Interactive Sphere -->
-                    <div id="hero-3d-sphere" class="hero-3d-container"></div>
+                    <!-- <div id="hero-3d-sphere" class="hero-3d-container"></div> -->
 
                     <!-- Background Gradient Shape -->
                     <div class="gradient-blob"></div>
 
                     <!-- Teacher Image -->
-                    <div class="teacher-container">
+                    <div class="teacher-container" role="img"
+                        aria-label="Interactive teacher illustration with animated background" tabindex="0">
+                        <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" id="blobSvg" class="teacher-blob"
+                            aria-hidden="true">
+                            <defs>
+                                <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color: var(--primary-color);"></stop>
+                                    <stop offset="100%" style="stop-color: var(--secondary-color);"></stop>
+                                </linearGradient>
+                            </defs>
+                            <path id="blob"
+                                d="M449.5,314.5Q451,379,384.5,389Q318,399,270,422Q222,445,154.5,441.5Q87,438,59,376Q31,314,44,253.5Q57,193,81,138Q105,83,160.5,49.5Q216,16,283,23Q350,30,368.5,96Q387,162,417.5,206Q448,250,449.5,314.5Z"
+                                fill="url(#gradient)"></path>
+                        </svg>
                         <img src="./assets/images/Teacher.png" alt="Mr. Islam - Geology Teacher" class="teacher-image">
                     </div>
 
