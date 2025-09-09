@@ -2074,7 +2074,8 @@ body {
     }
 
     /* Teacher Image - Reduced Motion */
-    .teacher-image::after {
+    .rock-one,
+    .rock-two {
         animation: none;
         transform: none;
     }
@@ -2097,10 +2098,10 @@ body {
     transform: translateY(-10px) scale(1.02);
 }
 
-.teacher-container:hover .teacher-image::after {
-    transform: scaleX(1.2);
-    opacity: 1;
-    height: 4px;
+.teacher-container:hover .rock-one,
+.teacher-container:hover .rock-two {
+    transform: scale(1.15);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
 /* Teacher Container Active Effects */
@@ -2108,9 +2109,9 @@ body {
     transform: translateY(-5px) scale(1.01);
 }
 
-.teacher-container:active .teacher-image::after {
-    transform: scaleX(1.1);
-    height: 5px;
+.teacher-container:active .rock-one,
+.teacher-container:active .rock-two {
+    transform: scale(1.05);
 }
 
 .classrooms-container {
@@ -3128,17 +3129,34 @@ body {
     mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M0,0 H100 V80 C96,82 92,84 88,85 C84,86 80,87 72,88 C64,89 56,90 48,90.5 C40,90 32,89 24,88 C16,86.5 10,85 6,83 C4,82 2,81 0,80 Z' fill='white'/%3E%3Crect x='0' y='0' width='100' height='80' fill='white'/%3E%3Crect x='0' y='0' width='100' height='100' fill='none'/%3E%3C/svg%3E") center/contain no-repeat;
 }
 
-.teacher-image::after {
-    content: '';
+.rock-two {
     position: absolute;
-    bottom: -10px;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: var(--primary-gradient);
-    border-radius: 2px;
-    animation: instructorNameUnderline 3s ease-in-out infinite;
-    transform-origin: left;
+    top: 100px;
+    left: -30px;
+    z-index: 10;
+    animation: teacherFloat 6s ease-in-out infinite;
+    animation-delay: -2s;
+    opacity: 1;
+    pointer-events: none;
+    padding: 15px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #ff6b6b, #ffa500);
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+.rock-one {
+    position: absolute;
+    bottom: 100px;
+    right: -50px;
+    z-index: 10;
+    animation: teacherFloat 6s ease-in-out infinite;
+    animation-delay: -4s;
+    opacity: 1;
+    pointer-events: none;
+    padding: 15px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #FFFFFF, #f0f0f0);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Teacher Container Hover Effects */
@@ -3174,19 +3192,6 @@ body {
     filter: drop-shadow(0 20px 40px rgba(251, 54, 52, 0.6));
 }
 
-/* Floating Icons */
-
-
-
-
-
-
-
-
-
-
-
-
 .layer-label:hover {
     transform: scale(1.1);
     box-shadow: 0 4px 15px rgba(255, 102, 0, 0.4);
@@ -3196,10 +3201,6 @@ body {
 .earth-layers:hover .layers-image {
     animation-play-state: paused;
 }
-
-
-
-
 
 /* Decorative Dots */
 .decorative-dots {
@@ -3267,6 +3268,24 @@ body {
     .teacher-image {
         width: 280px;
         height: 350px;
+    }
+
+    .rock-two {
+        top: 80px;
+        left: -25px;
+        padding: 12px;
+        width: 50px;
+        height: 50px;
+        /* display: none; */
+    }
+
+    .rock-one {
+        bottom: 80px;
+        right: -40px;
+        padding: 12px;
+        width: 50px;
+        height: 50px;
+        /* display: none; */
     }
 
     .teacher-blob {
@@ -3631,6 +3650,18 @@ body {
         height: 312px;
     }
 
+    .rock-two {
+        top: 70px;
+        left: -20px;
+        padding: 10px;
+    }
+
+    .rock-one {
+        bottom: 70px;
+        right: -35px;
+        padding: 10px;
+    }
+
     .teacher-blob {
         width: 280px;
         height: 280px;
@@ -3880,6 +3911,18 @@ body {
     .teacher-image {
         width: 200px;
         height: 250px;
+    }
+
+    .rock-two {
+        top: 60px;
+        left: -15px;
+        padding: 8px;
+    }
+
+    .rock-one {
+        bottom: 60px;
+        right: -30px;
+        padding: 8px;
     }
 
     .teacher-blob {
