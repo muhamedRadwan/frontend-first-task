@@ -1,14 +1,8 @@
-# Frontend Task 2 - React Quiz App
-
-A complete and functional React Quiz application built with modern technologies and best practices.
-
-## Project Overview
-
-This is a fully functional Quiz application that demonstrates advanced React development skills, state management, and API integration. The app fetches quiz questions from an external API, presents them one at a time, tracks user progress, and calculates final scores.
+# Frontend Task 1
 
 ## Live Demo & Repository
 
-- **Live Demo**: [https://abdelrahman-samy-dev.github.io/frontend-first-task/](https://abdelrahman-samy-dev.github.io/frontend-first-task/)
+- **Live Demo**: [https://abdelrahman-samy-dev.github.io/frontend-first-task/](https://mr-islam.vercel.app/)
 - **Repository**: [https://github.com/abdelrahman-samy-dev/frontend-first-task](https://github.com/abdelrahman-samy-dev/frontend-first-task)
 
 ## Features
@@ -208,7 +202,7 @@ This project is submitted for assessment and demonstration purposes.
 
 **Abdelrahman Samy**
 
-- **Live Demo**: [https://abdelrahman-samy-dev.github.io/frontend-first-task/](https://abdelrahman-samy-dev.github.io/frontend-first-task/)
+- **Live Demo**: [https://abdelrahman-samy-dev.github.io/frontend-first-task/]([https://abdelrahman-samy-dev.github.io/frontend-first-task/](https://mr-islam.vercel.app/))
 - **Repository**: [https://github.com/abdelrahman-samy-dev/frontend-first-task](https://github.com/abdelrahman-samy-dev/frontend-first-task)
 
 ---
@@ -222,3 +216,4 @@ This project is submitted for assessment and demonstration purposes.
 ---
 
 _Built with modern web technologies_
+
