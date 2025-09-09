@@ -2,7 +2,7 @@
 
 ## Live Demo & Repository
 
-- **Live Demo**: [https://abdelrahman-samy-dev.github.io/frontend-first-task/](https://mr-islam.vercel.app/)
+- **Live Demo**: [https://mr-islam.vercel.app/](https://mr-islam.vercel.app/)
 - **Repository**: [https://github.com/abdelrahman-samy-dev/frontend-first-task](https://github.com/abdelrahman-samy-dev/frontend-first-task)
 
 ## Features
@@ -202,7 +202,7 @@ This project is submitted for assessment and demonstration purposes.
 
 **Abdelrahman Samy**
 
-- **Live Demo**: [https://abdelrahman-samy-dev.github.io/frontend-first-task/]([https://abdelrahman-samy-dev.github.io/frontend-first-task/](https://mr-islam.vercel.app/))
+- **Live Demo**: [https://mr-islam.vercel.app/]((https://mr-islam.vercel.app/))
 - **Repository**: [https://github.com/abdelrahman-samy-dev/frontend-first-task](https://github.com/abdelrahman-samy-dev/frontend-first-task)
 
 ---
@@ -216,4 +216,5 @@ This project is submitted for assessment and demonstration purposes.
 ---
 
 _Built with modern web technologies_
+
 
