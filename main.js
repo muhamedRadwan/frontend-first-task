@@ -1821,6 +1821,7 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileMenuManager.init();
         scrollManager.init();
         animationManager.init();
+        quoteParticlesManager.init();
 
         // Initialize AOS (Animate On Scroll)
         if (typeof AOS !== 'undefined') {
@@ -1987,11 +1988,167 @@ window.addEventListener('beforeunload', () => {
     }
 });
 
+// Quote Section Particles Manager
+const quoteParticlesManager = {
+    init() {
+        try {
+            this.initQuoteParticles();
+        } catch (error) {
+            console.error('Error initializing Quote Particles:', error);
+        }
+    },
+
+    initQuoteParticles() {
+        try {
+            if (typeof particlesJS !== 'undefined') {
+                // Initialize Stats
+                let stats, count_particles, update;
+
+                if (typeof Stats !== 'undefined') {
+                    stats = new Stats();
+                    stats.setMode(0);
+                    stats.domElement.style.position = 'absolute';
+                    stats.domElement.style.left = '0px';
+                    stats.domElement.style.top = '0px';
+                    document.querySelector('.quote-section').appendChild(stats.domElement);
+                }
+
+                count_particles = document.querySelector('.js-count-particles');
+
+                particlesJS('quote-particles', {
+                    particles: {
+                        number: {
+                            value: 160,
+                            density: {
+                                enable: true,
+                                value_area: 800
+                            }
+                        },
+                        color: {
+                            value: '#ffffff'
+                        },
+                        shape: {
+                            type: 'circle',
+                            stroke: {
+                                width: 0,
+                                color: '#000000'
+                            },
+                            polygon: {
+                                nb_sides: 5
+                            }
+                        },
+                        opacity: {
+                            value: 1,
+                            random: true,
+                            anim: {
+                                enable: true,
+                                speed: 1,
+                                opacity_min: 0,
+                                sync: false
+                            }
+                        },
+                        size: {
+                            value: 3,
+                            random: true,
+                            anim: {
+                                enable: false,
+                                speed: 4,
+                                size_min: 0.3,
+                                sync: false
+                            }
+                        },
+                        line_linked: {
+                            enable: false,
+                            distance: 150,
+                            color: '#ffffff',
+                            opacity: 0.4,
+                            width: 1
+                        },
+                        move: {
+                            enable: true,
+                            speed: 1,
+                            direction: 'none',
+                            random: true,
+                            straight: false,
+                            out_mode: 'out',
+                            bounce: false,
+                            attract: {
+                                enable: false,
+                                rotateX: 600,
+                                rotateY: 600
+                            }
+                        }
+                    },
+                    interactivity: {
+                        detect_on: 'canvas',
+                        events: {
+                            onhover: {
+                                enable: true,
+                                mode: 'bubble'
+                            },
+                            onclick: {
+                                enable: true,
+                                mode: 'repulse'
+                            },
+                            resize: true
+                        },
+                        modes: {
+                            grab: {
+                                distance: 400,
+                                line_linked: {
+                                    opacity: 1
+                                }
+                            },
+                            bubble: {
+                                distance: 250,
+                                size: 0,
+                                duration: 2,
+                                opacity: 0,
+                                speed: 3
+                            },
+                            repulse: {
+                                distance: 400,
+                                duration: 0.4
+                            },
+                            push: {
+                                particles_nb: 4
+                            },
+                            remove: {
+                                particles_nb: 2
+                            }
+                        }
+                    },
+                    retina_detect: true
+                });
+
+                // Update function for stats
+                update = function () {
+                    if (stats) {
+                        stats.begin();
+                        stats.end();
+                    }
+                    if (count_particles && window.pJSDom && window.pJSDom[0] && window.pJSDom[0].pJS && window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) {
+                        count_particles.innerText = window.pJSDom[0].pJS.particles.array.length;
+                    }
+                    requestAnimationFrame(update);
+                };
+                requestAnimationFrame(update);
+
+            } else {
+                console.warn('Particles.js library not found for Quote Section');
+            }
+        } catch (error) {
+            console.error('Error initializing Quote Particles:', error);
+        }
+    }
+};
+
 // Export for debugging
 try {
     window.AppState = AppState;
     window.utils = utils;
     window.animationManager = animationManager;
+    window.quoteParticlesManager = quoteParticlesManager;
 } catch (error) {
     console.error('Error exporting debugging objects:', error);
 }

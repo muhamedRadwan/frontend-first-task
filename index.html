@@ -683,6 +683,9 @@
 
         <!-- Quote Section -->
         <section class="quote-section" id="quote">
+            <!-- Particles Background -->
+            <div id="quote-particles" class="particles-background"></div>
+            <!-- Stats - Count Particles -->
             <div class="quote-container" data-aos="fade-up" data-aos-duration="800">
                 <div class="quote-icon" data-aos="fade-up" data-aos-delay="100">
                     <i data-lucide="message-square-quote"></i>
@@ -709,19 +712,16 @@
                 </div>
             </div>
 
-            <!-- Background Elements -->
-            <div class="quote-glow-left"></div>
-            <div class="quote-glow-right"></div>
-            <div class="quote-dots"></div>
-            <div class="quote-stars">
-                <div class="star-1"></div>
-                <div class="star-2"></div>
-                <div class="star-3"></div>
-            </div>
         </section>
 
         <!-- Download Here Section -->
         <section class="download-here" id="download">
+            <!-- Top Animated Wave -->
+            <div class="download-wave-top">
+                <div class="wave wave1"></div>
+                <div class="wave wave2"></div>
+                <div class="wave wave3"></div>
+            </div>
             <div class="download-container">
                 <div class="download-grid">
                     <div class="download-left" data-aos="fade-right" data-aos-duration="600" data-aos-delay="100">
@@ -768,6 +768,11 @@
                     </div>
                 </div>
             </div>
+            <!-- Bottom Animated Wave -->
+            <div class="download-wave-bottom">
+                <div class="wave wave1"></div>
+                <div class="wave wave2"></div>
+                <div class="wave wave3"></div>
             </div>
         </section>
 
@@ -867,8 +872,88 @@
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://threejs.org/examples/js/libs/stats.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="main.js"></script>
+    <script type="module">
+        import { spline } from 'https://cdn.skypack.dev/@georgedoescode/spline@1.0.1';
+        import SimplexNoise from 'https://cdn.skypack.dev/simplex-noise@2.4.0';
+
+        function initBlobMorph() {
+            const svg = document.getElementById('blobSvg');
+            const path = svg?.querySelector('#blob');
+            if (!svg || !path) return;
+
+            const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (prefersReduced) return;
+
+            const centerX = 250;
+            const centerY = 250;
+            const baseRadius = 190;
+            const numPoints = 8;
+            const noiseStepBase = 0.005;
+            let noiseStep = noiseStepBase;
+
+            const simplex = new SimplexNoise();
+
+            const points = createPoints();
+
+            function createPoints() {
+                const pts = [];
+                const angleStep = (Math.PI * 2) / numPoints;
+                for (let i = 0; i < numPoints; i++) {
+                    const theta = i * angleStep;
+                    const x = centerX + Math.cos(theta) * baseRadius;
+                    const y = centerY + Math.sin(theta) * baseRadius;
+                    pts.push({
+                        x,
+                        y,
+                        originX: x,
+                        originY: y,
+                        noiseOffsetX: Math.random() * 1000,
+                        noiseOffsetY: Math.random() * 1000
+                    });
+                }
+                return pts;
+            }
+
+            function noise(x, y) {
+                return simplex.noise2D(x, y);
+            }
+
+            function map(n, start1, end1, start2, end2) {
+                return ((n - start1) / (end1 - start1)) * (end2 - start2) + start2;
+            }
+
+            function animate() {
+                for (let i = 0; i < points.length; i++) {
+                    const point = points[i];
+                    const nX = noise(point.noiseOffsetX, point.noiseOffsetX);
+                    const nY = noise(point.noiseOffsetY, point.noiseOffsetY);
+                    const delta = 26;
+                    point.x = map(nX, -1, 1, point.originX - delta, point.originX + delta);
+                    point.y = map(nY, -1, 1, point.originY - delta, point.originY + delta);
+                    point.noiseOffsetX += noiseStep;
+                    point.noiseOffsetY += noiseStep;
+                }
+
+                path.setAttribute('d', spline(points, 1, true));
+                requestAnimationFrame(animate);
+            }
+
+            const container = document.querySelector('.teacher-container') || svg;
+            container.addEventListener('mouseenter', () => { noiseStep = 0.01; }, { passive: true });
+            container.addEventListener('mouseleave', () => { noiseStep = noiseStepBase; }, { passive: true });
+
+            animate();
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initBlobMorph, { once: true });
+        } else {
+            initBlobMorph();
+        }
+    </script>
 </body>
 
 </html>

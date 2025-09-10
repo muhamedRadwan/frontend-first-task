@@ -75,15 +75,15 @@
 
 /* Dark Theme Teacher Blob */
 [data-theme="dark"] .teacher-blob {
-    filter: drop-shadow(0 15px 30px rgba(251, 54, 52, 0.5));
+    filter: drop-shadow(0 15px 30px color-mix(in srgb, var(--primary-color) 50%, transparent));
 }
 
 [data-theme="dark"] .teacher-blob #gradient stop:first-child {
-    stop-color: rgb(255, 100, 50);
+    stop-color: var(--primary-color);
 }
 
 [data-theme="dark"] .teacher-blob #gradient stop:last-child {
-    stop-color: rgb(255, 150, 30);
+    stop-color: var(--secondary-color);
 }
 
 
@@ -1141,6 +1141,7 @@ body {
     position: relative;
     display: flex;
     align-items: center;
+    gap: 10px;
 }
 
 .input-wrapper i {
@@ -1573,10 +1574,6 @@ body {
     box-shadow: 0px 0px 60px rgba(9, 198, 249, 0.4);
 }
 
-[data-theme="dark"] .gradient-orange {
-    box-shadow: 0px 0px 60px rgba(255, 58, 52, 0.4);
-}
-
 [data-theme="dark"] .classrooms-section::before {
     background: radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--primary-color) 15%, transparent), color-mix(in srgb, var(--secondary-color) 5%, transparent));
 }
@@ -1659,8 +1656,6 @@ body {
 .feature-card:hover::before {
     left: 100%;
 }
-
-
 
 .feature-icon {
     width: 64px;
@@ -2446,11 +2441,11 @@ body {
 }
 
 .gradient-orange {
-    box-shadow: 0px 0px 60px rgba(255, 58, 52, 0.6);
+    box-shadow: 0px 0px 60px color-mix(in srgb, var(--primary-color) 60%, transparent);
 }
 
 .gradient-orange:hover {
-    box-shadow: 0px 0px 80px rgba(255, 58, 52, 0.8);
+    box-shadow: 0px 0px 80px color-mix(in srgb, var(--primary-color) 80%, transparent);
 }
 
 /* ===== DECORATIVE SHAPES BACKGROUND ===== */
@@ -3080,7 +3075,7 @@ body {
     border-radius: 50%;
     transform: translate(-50%, -50%);
     filter: blur(40px);
-    opacity: 0.8;
+    opacity: 0.4;
     animation: blobFloat 8s ease-in-out infinite;
     z-index: 1;
 }
@@ -3105,7 +3100,7 @@ body {
     height: 600px;
     z-index: 1;
     animation: blobFloat 5s ease-in-out infinite;
-    filter: drop-shadow(0 15px 30px rgba(251, 54, 52, 0.3));
+    filter: drop-shadow(0 15px 30px var(--primary-color));
     will-change: transform, filter;
     transform-origin: center center;
 }
@@ -3113,7 +3108,7 @@ body {
 .teacher-image {
     position: relative;
     width: 400px;
-    height: 500px;
+    height: 350px;
     object-fit: contain;
     object-position: center;
     z-index: 2;
@@ -3140,7 +3135,7 @@ body {
     pointer-events: none;
     padding: 15px;
     border-radius: 18px;
-    background: linear-gradient(135deg, #ff6b6b, #ffa500);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
 }
 
@@ -3189,7 +3184,7 @@ body {
 } */
 
 .teacher-container:focus .teacher-blob {
-    filter: drop-shadow(0 20px 40px rgba(251, 54, 52, 0.6));
+    filter: drop-shadow(0 20px 40px var(--primary-color));
 }
 
 .layer-label:hover {
@@ -4979,6 +4974,58 @@ html {
     justify-content: center;
 }
 
+/* Particles Background */
+.particles-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transition: opacity 0.3s ease;
+    background-color: #232741;
+    background-repeat: no-repeat;
+    background-size: 20%;
+    background-position: 50% 50%;
+}
+
+.quote-section:hover .particles-background {
+    opacity: 0.3;
+}
+
+/* Quote Container z-index */
+.quote-container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Stats - Count Particles */
+.count-particles {
+    background: #000022;
+    position: absolute;
+    top: 48px;
+    left: 0;
+    width: 80px;
+    color: #13E8E9;
+    font-size: 0.8em;
+    text-align: left;
+    text-indent: 4px;
+    line-height: 14px;
+    padding-bottom: 2px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    z-index: 3;
+    border-radius: 0 0 3px 3px;
+    -webkit-user-select: none;
+    user-select: none;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.js-count-particles {
+    font-size: 1.1em;
+}
+
 /* Background Glow Effects */
 .quote-glow-left {
     position: absolute;
@@ -5189,12 +5236,10 @@ html {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    box-shadow: 0 8px 25px rgba(233, 78, 27, 0.3);
 }
 
 .quote-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 35px rgba(233, 78, 27, 0.4);
 }
 
 .quote-btn i {
@@ -5236,6 +5281,17 @@ html {
     .quote-section {
         padding: 5rem 0;
         min-height: 90vh;
+    }
+
+    .particles-background {
+        opacity: 0.7;
+    }
+
+    .count-particles {
+        top: 20px;
+        left: 10px;
+        width: 60px;
+        font-size: 0.7em;
     }
 
     .quote-container {
@@ -5293,6 +5349,17 @@ html {
     .quote-section {
         padding: 4rem 0;
         min-height: 80vh;
+    }
+
+    .particles-background {
+        opacity: 0.5;
+    }
+
+    .count-particles {
+        top: 15px;
+        left: 5px;
+        width: 50px;
+        font-size: 0.6em;
     }
 
     .quote-container {
@@ -5504,6 +5571,17 @@ html {
         min-height: 70vh;
     }
 
+    .particles-background {
+        opacity: 0.3;
+    }
+
+    .count-particles {
+        top: 10px;
+        left: 5px;
+        width: 40px;
+        font-size: 0.5em;
+    }
+
     .quote-container {
         padding: 0 0.75rem;
     }
@@ -5569,6 +5647,19 @@ html {
 /* ===== DARK MODE QUOTE SECTION ===== */
 [data-theme="dark"] .quote-section {
     background: linear-gradient(135deg, #102041 0%, #02050D 100%);
+}
+
+[data-theme="dark"] .particles-background {
+    opacity: 0.8;
+}
+
+[data-theme="dark"] .quote-section:hover .particles-background {
+    opacity: 0.4;
+}
+
+[data-theme="dark"] .count-particles {
+    background: #000011;
+    color: #00ffff;
 }
 
 [data-theme="dark"] .quote-glow-left,
@@ -5708,6 +5799,103 @@ html {
     padding: 6rem 0;
     background: var(--download-bg);
     transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+/* Download Section Animated Waves */
+.download-wave-top,
+.download-wave-bottom {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.download-wave-top {
+    top: 0;
+}
+
+.download-wave-bottom {
+    bottom: 0;
+    transform: rotate(180deg);
+}
+
+.wave {
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    animation: wave-animation 6s ease-in-out infinite;
+    clip-path: polygon(0 100%, 0 60%, 25% 40%, 50% 60%, 75% 30%, 100% 50%, 100% 100%);
+}
+
+.wave1 {
+    opacity: 0.8;
+    animation-delay: 0s;
+    clip-path: polygon(0 100%, 0 70%, 20% 50%, 40% 70%, 60% 40%, 80% 60%, 100% 30%, 100% 100%);
+}
+
+.wave2 {
+    opacity: 0.6;
+    animation-delay: -2s;
+    clip-path: polygon(0 100%, 0 60%, 15% 40%, 35% 60%, 55% 30%, 75% 50%, 95% 20%, 100% 100%);
+}
+
+.wave3 {
+    opacity: 0.4;
+    animation-delay: -4s;
+    clip-path: polygon(0 100%, 0 50%, 25% 30%, 45% 50%, 65% 20%, 85% 40%, 100% 10%, 100% 100%);
+}
+
+@keyframes wave-animation {
+    0% {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    25% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(-20px);
+    }
+
+    75% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* Fallback for browsers that don't support clip-path */
+@supports not (clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%)) {
+    .wave {
+        border-radius: 50% 50% 0 0;
+    }
+
+    .wave1 {
+        border-radius: 60% 40% 0 0;
+    }
+
+    .wave2 {
+        border-radius: 50% 50% 0 0;
+    }
+
+    .wave3 {
+        border-radius: 40% 60% 0 0;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .wave {
+        animation: none;
+        transform: none;
+    }
 }
 
 /* Light Mode (Default) */
@@ -5740,10 +5928,18 @@ html {
     --badge-bg: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
 }
 
+/* Dark Mode Download Waves */
+[data-theme="dark"] .wave {
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    opacity: 0.9;
+}
+
 .download-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
+    position: relative;
+    z-index: 2;
 }
 
 .download-grid {
@@ -7033,5 +7229,30 @@ html {
     .back-to-top i {
         width: 18px;
         height: 18px;
+    }
+}
+
+/* Responsive Download Waves */
+@media (max-width: 768px) {
+
+    .download-wave-top,
+    .download-wave-bottom {
+        height: 80px;
+    }
+
+    .wave {
+        animation-duration: 8s;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .download-wave-top,
+    .download-wave-bottom {
+        height: 60px;
+    }
+
+    .wave {
+        animation-duration: 10s;
     }
 }
